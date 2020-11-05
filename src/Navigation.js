@@ -74,10 +74,14 @@ export default function Navigation() {
                 </li>
                 <span className="li-span">
                     <li className="nav-item m-1">
-                      <Button  className="li-btn">Login</Button>
+                        <NavLink to="/login">
+                            <Button className="li-btn">Login</Button>
+                        </NavLink>
                     </li>
                     <li className="nav-item m-1">
-                        <Button  className="li-btn">Signup</Button>
+                        <NavLink to="/signup">
+                            <Button  className="li-btn">Signup</Button>
+                        </NavLink>
                     </li>
                 </span>
             </ul>
@@ -92,8 +96,8 @@ export default function Navigation() {
 
     return (
         <div>
-            {LoggedInViewNav()}
-            {/* {LoggedOutViewNav()} */}
+            {/* {LoggedInViewNav()} */}
+            {LoggedOutViewNav()}
         </div>
     )
 }

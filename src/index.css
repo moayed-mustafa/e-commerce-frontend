@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.form-div{
+  background-color:#283350;
+  color:  #FFB500;
+  font-weight: bold;
+  width: 70%;
+  text-align: center;
+  padding: 0.5rem;
+
+
+}
+.form{
+
+  justify-content:center;
+}
+.error{
+  background-color:#F93800;
+  color: #FFB500;
+  padding:0.25rem;
+  margin-top:10px;;
+}
+
