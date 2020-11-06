@@ -22,13 +22,44 @@ code {
 
 }
 .form{
-
   justify-content:center;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 .error{
   background-color:#F93800;
   color: #FFB500;
   padding:0.25rem;
-  margin-top:10px;;
+  margin-top:10px;
+}
+.container{
+  display: flex;
+  justify-content:center;
+}
+.jumbo{
+  background-color:#283350 !important;
+  color: #FFB500;
+  font-weight: bold;
+    width: 100%;
+    border: 2px solid #F93800;
+    /* align-self: center; */
+
+}
+.jumbo-span{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+}
+.jumbo-span > p{
+  margin: 1rem;
+}
+hr{
+  background-color:#F93800;
+}
+.flash{
+  background-color:#F93800;
+  padding:0.5rem;
 }
 

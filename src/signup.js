@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useFormik } from 'formik'
-import { Form, FormGroup, Label, Input,Button, FormFeedback, FormText, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input,Button, Row, Col } from 'reactstrap';
 import './index.css'
+import Auth from './auth'
+import { decode } from 'jsonwebtoken'
 
 
 export default function Signup() {
+
+
+    let [flash, setFlash] = useState('')
 
     const validate = values => {
         const errors = {}
@@ -21,9 +26,11 @@ export default function Signup() {
             errors.password ="Required!"
         } else if (values.password.length <6) {
             errors.password ='Must be 6 charachters or more'
-        } else if (!/[A-Z!]$/.test(values.password)) {
-            errors.password ='Must have at least one Capital letter'
         }
+        //  * figure this one out later
+        // else if (!/[A-Z]$/i.test(values.password)) {
+        //     errors.password ='Must have at least one Capital letter'
+        // }
 
         // firstname validation
         if (values.first_name=== "") {
@@ -62,10 +69,24 @@ export default function Signup() {
             address:""
         },
         validate,
-        onSubmit: values => {
+        onSubmit: async(values) => {
             //  here is where my api connection to  the signup route will happen
-            alert(JSON.stringify(values, null, 2))
-            // alert("submitted")
+            // * find a way to error handle the signup
+            try {
+                let res = await Auth.signup(values)
+                console.log(res)
+                let token = res.data._token;
+                console.log(token)
+                console.log(decode(token))
+
+            } catch (e) {
+                setFlash(flash=> `Username ${values.username} already exists`)
+                console.log(flash)
+            }
+
+
+
+
         }
     })
 
@@ -180,6 +201,8 @@ export default function Signup() {
             </Row>
                 <Button type="submit"className="li-btn">Signup</Button>
             </Form>
+            {/* {flash && <strong className="flash">{flash}</strong>} */}
+
         </div>
     )
 

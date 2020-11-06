@@ -2,14 +2,16 @@
 import React, {useState} from 'react'
 import './Navigation.css'
 import { Button } from 'reactstrap'
-
-
-  import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import Auth from './auth'
+import {useSelector} from 'react-redux'
 
 
 export default function Navigation() {
     let [categoriesOpen, setCategoriesOpen] = useState(false)
     let [shevronOpen, setShevronOpen] = useState(false)
+    const currentUser = useSelector(st => st)
+    console.log(currentUser)
 
     function LoggedInViewNav() {
 
@@ -48,7 +50,10 @@ export default function Navigation() {
                                         <i className="fas fa-cog"></i>
                                     </li>
                                     <li className="nav-item nav-drop-down">
-                                        <i className="fas fa-sign-out-alt"></i>
+                                    <i
+                                        className="fas fa-sign-out-alt"
+                                        onClick={Auth.logout()}
+                                    ></i>
                                     </li>
                             </ul>
                             : null}
@@ -70,7 +75,10 @@ export default function Navigation() {
         return (
             <ul className="main-nav">
                 <li className="nav-item nav-brand m-1">
-                    <Button className ="btn-brand" >Shopper</Button>
+                    <NavLink to="/">
+                        <Button className ="btn-brand" >Shopper</Button>
+
+                    </NavLink>
                 </li>
                 <span className="li-span">
                     <li className="nav-item m-1">
@@ -96,8 +104,11 @@ export default function Navigation() {
 
     return (
         <div>
-            {/* {LoggedInViewNav()} */}
-            {LoggedOutViewNav()}
+            {
+                currentUser._token?LoggedInViewNav():LoggedOutViewNav()
+            }
+            {/* {LoggedInViewNav()}
+            {LoggedOutViewNav()} */}
         </div>
     )
 }

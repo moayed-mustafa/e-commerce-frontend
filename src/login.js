@@ -1,11 +1,19 @@
-import React from 'react'
-import { Form, FormGroup, Label, Input,Button, FormFeedback, FormText, Row, Col } from 'reactstrap';
+import React, {useState} from 'react'
+import { Form, FormGroup, Label, Input,Button,  Row, Col } from 'reactstrap';
 import './index.css'
 import { useFormik } from 'formik'
+import Auth from './auth'
+import { useHistory } from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
 
 
 
 export default function Login() {
+
+    let [flash, setFlash] = useState('')
+    let history = useHistory()
+    let dispatch = useDispatch()
+
     const validate = values => {
 
 
@@ -26,9 +34,20 @@ export default function Login() {
             password: "",
         },
         validate,
-        onSubmit: values => {
-            //  remove this later
-            alert(JSON.stringify(values, null, 2))
+        onSubmit: async (values) => {
+
+            try {
+            //  * find a way to error handle the login
+                let user = await Auth.login(values);
+                console.log(user)
+                dispatch({type:"STORE_USER", user})
+                history.push('/')
+
+            } catch (e) {
+                setFlash(flash=>'Invalid Credintials')
+                console.log(flash)
+            }
+
         }
 
     })
@@ -74,8 +93,9 @@ export default function Login() {
                 </Col>
                 </Row>
                 <Button type="submit" className="li-btn">Login</Button>
-
             </Form>
+            {/* {flash.length  && <strong className="flash">{flash}</strong>} */}
+
         </div>
     )
 
