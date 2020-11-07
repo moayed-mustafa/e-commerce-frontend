@@ -10,8 +10,8 @@ export default class Auth{
     static async signup(signup_data) {
         const res = await axios.post(`${BASE_URL}/users/signup`, signup_data)
         if (res.data._token) {
-            let username  = signup_data.username
-            this.setInLS(res.data._token, username)
+            let username = signup_data.username
+            return{_token:res.data._token, username}
 
         }
 
@@ -22,7 +22,7 @@ export default class Auth{
             const res = await axios.post(`${BASE_URL}/login`, login_data)
             if (res.data._token) {
                 let username = login_data.username
-                this.setInLS(res.data._token, username)
+                return{_token:res.data._token, username}
 
             }
 

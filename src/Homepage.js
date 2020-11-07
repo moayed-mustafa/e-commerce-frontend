@@ -9,11 +9,12 @@ import userContext from './userContext'
 
 export default function Homepage() {
 
+    const ACTIVE_USER = useContext(userContext)
+    console.log(ACTIVE_USER)
+    const {current_user} = ACTIVE_USER
 
-    const currentUser = useContext(userContext)
-    console.log(currentUser)
     return (
-        !currentUser?
+        !current_user?
         <div className="container">
             <Jumbotron className="jumbo" >
                 <h1 className="display-3">Welcome to Shopper</h1>

@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Form, FormGroup, Label, Input,Button,  Row, Col } from 'reactstrap';
 import './index.css'
 import { useFormik } from 'formik'
 import Auth from './auth'
 import { useHistory } from 'react-router-dom'
-// import {useSelector, useDispatch} from 'react-redux'
+import userContext from './userContext'
 
 
 
@@ -12,7 +12,8 @@ export default function Login() {
 
     let [flash, setFlash] = useState('')
     let history = useHistory()
-    // let dispatch = useDispatch()
+    const { current_user, set_current_user } = useContext(userContext)
+    console.log(current_user)
 
     const validate = values => {
 
@@ -39,8 +40,7 @@ export default function Login() {
             try {
 
                 let user = await Auth.login(values);
-                console.log(user)
-                // dispatch({type:"STORE_USER", user})
+                set_current_user(user)
                 history.push('/')
 
             } catch (e) {

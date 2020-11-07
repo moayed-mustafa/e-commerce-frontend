@@ -1,15 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { useFormik } from 'formik'
 import { Form, FormGroup, Label, Input,Button, Row, Col } from 'reactstrap';
 import './index.css'
 import Auth from './auth'
-// import { useSelector, useDispatch } from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import userContext from './userContext'
+
 
 export default function Signup() {
 
-    // const dispatch = useDispatch()
     const history = useHistory()
+    const { current_user, set_current_user } = useContext(userContext)
+
 
     let [flash, setFlash] = useState('')
 
@@ -57,6 +59,10 @@ export default function Signup() {
           } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
             errors.email = 'Invalid email address';
           }
+        // address validation
+        if (!values.address) {
+            errors.address = 'Required';
+          }
         return errors;
 
     }
@@ -77,8 +83,8 @@ export default function Signup() {
             try {
                 let user = await Auth.signup(values)
                 console.log(user)
+                set_current_user(user)
 
-                // dispatch({type:"STORE_USER", user})
                 history.push('/')
 
             } catch (e) {
@@ -196,7 +202,10 @@ export default function Signup() {
                         onChange={formik.handleChange}
                         value={formik.values.address}
                         onBlur={formik.handleBlur}
-                         />
+                            />
+                            {formik.touched.address&& formik.errors.address ?
+                                <div className="error">{formik.errors.address}</div>
+                                : null}
                     </FormGroup>
 
                 </Col>

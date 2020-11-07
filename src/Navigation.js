@@ -11,8 +11,9 @@ import userContext from './userContext'
 export default function Navigation() {
     let [categoriesOpen, setCategoriesOpen] = useState(false)
     let [shevronOpen, setShevronOpen] = useState(false)
-    const currentUser = useContext(userContext)
-    console.log(currentUser)
+    const ACTIVE_USER = useContext(userContext)
+    console.log(ACTIVE_USER)
+    const {current_user, set_current_user} = ACTIVE_USER
 
     function LoggedInViewNav() {
 
@@ -53,11 +54,8 @@ export default function Navigation() {
                                     <li className="nav-item nav-drop-down">
                                         <i className="fas fa-cog"></i>
                                     </li>
-                                    <li className="nav-item nav-drop-down">
-                                    <i
-                                        className="fas fa-sign-out-alt"
-                                        onClick={Auth.logout()}
-                                    ></i>
+                                    <li className="nav-item nav-drop-down" onClick={console.log(3)}>
+                                        <i className="fas fa-sign-out-alt"></i>
                                     </li>
                             </ul>
                             : null}
@@ -109,7 +107,7 @@ export default function Navigation() {
     return (
         <div>
             {
-                currentUser?LoggedInViewNav():LoggedOutViewNav()
+                current_user?LoggedInViewNav():LoggedOutViewNav()
             }
             {/* {LoggedInViewNav()}
             {LoggedOutViewNav()} */}

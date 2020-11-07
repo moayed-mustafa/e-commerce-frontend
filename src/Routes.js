@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import UserContext from './userContext'
 import Signup from './Signup'
 import Login from './Login'
@@ -17,17 +17,27 @@ export default function Routes() {
 
     const ACTIVE_USER = JSON.parse(localStorage.getItem("user"))
 
-    console.log(ACTIVE_USER)
-        const [current_user] = useState(ACTIVE_USER)
-    console.log(current_user)
+        const [current_user, set_current_user] = useState(ACTIVE_USER)
+
+
+    function checkUser(user) {
+        if (!user._token) {
+            localStorage.removeItem("user");
+
+        }else {
+                localStorage.setItem("user",JSON.stringify(user))
+        }
+        set_current_user(user)
+
+    }
 
 
 
 
     return (
 
-            <UserContext.Provider value={current_user}>
-                <Router>
+        <Router>
+                <UserContext.Provider value={{current_user, set_current_user:checkUser}}>
                     <Navigation />
                     <Switch>
 
@@ -44,8 +54,8 @@ export default function Routes() {
                             <Tester/>
                         </Route>
                     </Switch>
-                </Router>
             </UserContext.Provider>
+                </Router>
     )
 
 
