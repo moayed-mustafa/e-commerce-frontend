@@ -3,11 +3,13 @@ import { useFormik } from 'formik'
 import { Form, FormGroup, Label, Input,Button, Row, Col } from 'reactstrap';
 import './index.css'
 import Auth from './auth'
-import { decode } from 'jsonwebtoken'
-
+// import { useSelector, useDispatch } from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
 export default function Signup() {
 
+    // const dispatch = useDispatch()
+    const history = useHistory()
 
     let [flash, setFlash] = useState('')
 
@@ -73,11 +75,11 @@ export default function Signup() {
             //  here is where my api connection to  the signup route will happen
             // * find a way to error handle the signup
             try {
-                let res = await Auth.signup(values)
-                console.log(res)
-                let token = res.data._token;
-                console.log(token)
-                console.log(decode(token))
+                let user = await Auth.signup(values)
+                console.log(user)
+
+                // dispatch({type:"STORE_USER", user})
+                history.push('/')
 
             } catch (e) {
                 setFlash(flash=> `Username ${values.username} already exists`)

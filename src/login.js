@@ -4,7 +4,7 @@ import './index.css'
 import { useFormik } from 'formik'
 import Auth from './auth'
 import { useHistory } from 'react-router-dom'
-import {useSelector, useDispatch} from 'react-redux'
+// import {useSelector, useDispatch} from 'react-redux'
 
 
 
@@ -12,7 +12,7 @@ export default function Login() {
 
     let [flash, setFlash] = useState('')
     let history = useHistory()
-    let dispatch = useDispatch()
+    // let dispatch = useDispatch()
 
     const validate = values => {
 
@@ -37,10 +37,10 @@ export default function Login() {
         onSubmit: async (values) => {
 
             try {
-            //  * find a way to error handle the login
+
                 let user = await Auth.login(values);
                 console.log(user)
-                dispatch({type:"STORE_USER", user})
+                // dispatch({type:"STORE_USER", user})
                 history.push('/')
 
             } catch (e) {

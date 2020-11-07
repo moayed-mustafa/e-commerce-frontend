@@ -1,21 +1,26 @@
 
 
-import React from 'react'
+import React, {useContext} from 'react'
 import { Jumbotron, Button } from 'reactstrap';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import userContext from './userContext'
+
 
 
 export default function Homepage() {
 
-    return (
 
+    const currentUser = useContext(userContext)
+    console.log(currentUser)
+    return (
+        !currentUser?
         <div className="container">
             <Jumbotron className="jumbo" >
                 <h1 className="display-3">Welcome to Shopper</h1>
                 <p className="lead">
                     On this website, you can buy all kinds of stuff, from nice clothes and accessories to electronics and gadgets!
                     </p>
-                <hr className="my-2"  />
+                <hr className="my-2" />
                 <span className="jumbo-span">
                     <p>Signup for an account if you are new here</p>
                     <Link to="/signup">
@@ -30,7 +35,14 @@ export default function Homepage() {
                 </span>
 
             </Jumbotron>
-    </div>
+
+        </div>
+            :
+            // instead of this, I'll need to have my products show up here when a use is signed in
+            <Link to="/tester">
+                <Button>teseter</Button>
+            </Link>
+
     )
 
 }
