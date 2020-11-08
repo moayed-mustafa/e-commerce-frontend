@@ -5,8 +5,12 @@ import UserContext from './userContext'
 import Signup from './Signup'
 import Login from './Login'
 import Homepage from './Homepage'
-import Tester from './Tester'
+// import Tester from './ProductsList'
 import Navigation from './Navigation'
+import PrivateRoute from './PrivateRoute'
+import RestrictedRoute from './RestrictedRoute'
+import TestPrivate from './TestPrivate'
+// import Product from './Product'
 
 
 
@@ -21,7 +25,7 @@ export default function Routes() {
 
 
     function checkUser(user) {
-        if (!user._token) {
+        if (! user || !user._token) {
             localStorage.removeItem("user");
 
         }else {
@@ -40,19 +44,24 @@ export default function Routes() {
                 <UserContext.Provider value={{current_user, set_current_user:checkUser}}>
                     <Navigation />
                     <Switch>
-
                         <Route exact path="/">
                             <Homepage/>
                         </Route>
-                        <Route exact path="/signup">
+                        <RestrictedRoute exact path="/signup">
                             <Signup/>
-                        </Route>
-                        <Route exact path="/login">
+                    </RestrictedRoute>
+
+                    <RestrictedRoute exact path="/login">
                             <Login/>
-                        </Route>
-                        <Route exact path="/tester">
-                            <Tester/>
-                        </Route>
+                    </RestrictedRoute>
+
+                    <PrivateRoute path="/tester">
+                        <TestPrivate/>
+                    </PrivateRoute>
+                    {/* <PrivateRoute path="/product:/id">
+                        <Product/>
+                    </PrivateRoute> */}
+
                     </Switch>
             </UserContext.Provider>
                 </Router>

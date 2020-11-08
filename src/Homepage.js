@@ -4,13 +4,13 @@ import React, {useContext} from 'react'
 import { Jumbotron, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import userContext from './userContext'
+import Products from './ProductsList'
 
 
 
 export default function Homepage() {
 
     const ACTIVE_USER = useContext(userContext)
-    console.log(ACTIVE_USER)
     const {current_user} = ACTIVE_USER
 
     return (
@@ -39,10 +39,7 @@ export default function Homepage() {
 
         </div>
             :
-            // instead of this, I'll need to have my products show up here when a use is signed in
-            <Link to="/tester">
-                <Button>teseter</Button>
-            </Link>
+            <Products/>
 
     )
 

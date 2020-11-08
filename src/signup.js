@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react'
 import { useFormik } from 'formik'
 import { Form, FormGroup, Label, Input,Button, Row, Col } from 'reactstrap';
 import './index.css'
-import Auth from './auth'
+import Auth from './API/auth'
 import { useHistory } from 'react-router-dom'
 import userContext from './userContext'
 
@@ -212,7 +212,7 @@ export default function Signup() {
             </Row>
                 <Button type="submit"className="li-btn">Signup</Button>
             </Form>
-            {/* {flash && <strong className="flash">{flash}</strong>} */}
+            {flash && <strong className="flash">{flash}</strong>}
 
         </div>
     )

@@ -3,7 +3,6 @@ import React, {useState, useContext} from 'react'
 import './Navigation.css'
 import { Button } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
-import Auth from './auth'
 import userContext from './userContext'
 
 
@@ -12,8 +11,12 @@ export default function Navigation() {
     let [categoriesOpen, setCategoriesOpen] = useState(false)
     let [shevronOpen, setShevronOpen] = useState(false)
     const ACTIVE_USER = useContext(userContext)
-    console.log(ACTIVE_USER)
-    const {current_user, set_current_user} = ACTIVE_USER
+    const { current_user, set_current_user } = ACTIVE_USER
+
+    function logout() {
+        set_current_user()
+        setShevronOpen(false)
+    }
 
     function LoggedInViewNav() {
 
@@ -54,7 +57,7 @@ export default function Navigation() {
                                     <li className="nav-item nav-drop-down">
                                         <i className="fas fa-cog"></i>
                                     </li>
-                                    <li className="nav-item nav-drop-down" onClick={console.log(3)}>
+                                    <li className="nav-item nav-drop-down" onClick={logout}>
                                         <i className="fas fa-sign-out-alt"></i>
                                     </li>
                             </ul>

@@ -12,19 +12,27 @@ code {
     monospace;
 }
 .form-div{
-  background-color:#283350;
-  color:  #FFB500;
+  /* color:  #FFB500; */
   font-weight: bold;
-  width: 70%;
+  /* width: 70%; */
   text-align: center;
   padding: 0.5rem;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content:center;
 
 
 }
 .form{
-  justify-content:center;
+  /* justify-content:center; */
+  background-color:#283350;
+  color:  #FFB500;
   margin-bottom: 0.5rem;
-  padding: 0.5rem;
+  padding: 1.5rem;
+  width:35.3%;
+
+
 }
 .error{
   background-color:#F93800;
@@ -61,5 +69,19 @@ hr{
 .flash{
   background-color:#F93800;
   padding:0.5rem;
+}
+
+.products-container{
+  border:1px solid black;
+  display:flex;
+  flex-wrap: wrap;
+}
+.product-card{
+  border:1px solid red;
+  width:25%;
+}
+.product-image{
+  width: 25%;
+  /* height: 15rem */
 }
 
