@@ -5,9 +5,8 @@ import './index.css'
 
 
 export default function ProductCard({product}) {
-    console.log(product)
     return (
-        <div className="card-wrapper">
+        <div className="card-wrapper" key={product.id}>
                 <div className="product-img-wrapper">
                     <img className="product-img" src={product.image} alt="product-display"></img>
                 </div>
@@ -20,8 +19,8 @@ export default function ProductCard({product}) {
                     </div>
                     <div className='product-price-buy'>
                         <button>{`Price: ${product.price}`}$</button>
-                        <button ><i class="fas fa-cart-plus"></i></button>
-                        <button ><i class="far fa-heart"></i></button>
+                        <button ><i className="fas fa-cart-plus"></i></button>
+                        <button ><i className="far fa-heart"></i></button>
                     </div>
                 </div>
 

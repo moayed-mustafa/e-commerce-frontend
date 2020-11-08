@@ -2,20 +2,29 @@
 import React, {useState, useContext} from 'react'
 import './Navigation.css'
 import { Button } from 'reactstrap'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory, Link } from 'react-router-dom'
 import userContext from './userContext'
 
 
 
 export default function Navigation() {
+
     let [categoriesOpen, setCategoriesOpen] = useState(false)
     let [shevronOpen, setShevronOpen] = useState(false)
     const ACTIVE_USER = useContext(userContext)
     const { current_user, set_current_user } = ACTIVE_USER
+    const history = useHistory()
 
     function logout() {
         set_current_user()
         setShevronOpen(false)
+    }
+    function clickHandler(e) {
+
+        const url = `/products/${e.target.id}`
+        history.push(url)
+        setCategoriesOpen(!categoriesOpen)
+
     }
 
     function LoggedInViewNav() {
@@ -36,10 +45,10 @@ export default function Navigation() {
 
                         {categoriesOpen ?
                             <ul className="drop-down">
-                                <li className="nav-item nav-drop-down">men clothing</li>
-                                <li className="nav-item nav-drop-down">women clothing</li>
-                                <li className="nav-item nav-drop-down">jewelery</li>
-                                <li className="nav-item nav-drop-down">electronics</li>
+                                <li className="nav-item nav-drop-down" id="men clothing" onClick={clickHandler}>men clothing</li>
+                                <li className="nav-item nav-drop-down" id="women clothing" onClick={clickHandler}>women clothing</li>
+                                <li className="nav-item nav-drop-down" id="jewelery" onClick={clickHandler}>jewelery</li>
+                                <li className="nav-item nav-drop-down" id="electronics" onClick={clickHandler}>electronics</li>
                             </ul>
                             : null}
                     </li>

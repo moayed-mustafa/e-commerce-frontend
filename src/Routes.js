@@ -10,7 +10,7 @@ import Navigation from './Navigation'
 import PrivateRoute from './PrivateRoute'
 import RestrictedRoute from './RestrictedRoute'
 import TestPrivate from './TestPrivate'
-// import Product from './Product'
+import Category from './Category.js'
 
 
 
@@ -55,12 +55,14 @@ export default function Routes() {
                             <Login/>
                     </RestrictedRoute>
 
+                    {/*  Dont forget to remove this */}
                     <PrivateRoute path="/tester">
                         <TestPrivate/>
                     </PrivateRoute>
-                    {/* <PrivateRoute path="/product:/id">
-                        <Product/>
-                    </PrivateRoute> */}
+
+                    <PrivateRoute exact path="/products/:category">
+                        <Category/>
+                    </PrivateRoute>
 
                     </Switch>
             </UserContext.Provider>
