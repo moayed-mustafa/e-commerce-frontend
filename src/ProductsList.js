@@ -1,13 +1,10 @@
 
 
-import React, { useContext, useEffect } from 'react'
+import React, {useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import fetchProducts from './API/api'
-// import {
-//     Card, CardImg, CardText, CardBody,
-//     CardTitle, CardSubtitle, Button, Col, Row
-//   } from 'reactstrap';
 import './index.css'
+import ProductCard from './ProductCard'
 
 
 
@@ -34,13 +31,12 @@ export default function Products() {
     return (
         <div className="products-container">
         {products.map(product => (
-
-            <div className="product-card">
-                <img src={product.image} alt="product" className="product-image"></img>
-                <h4>{product.title}</h4>
-                <button>Description</button>
-            </div>
-        ))}
+            <ProductCard product={product}/>
+          ))}
         </div>
     )
 }
+
+
+
+

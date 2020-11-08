@@ -2,12 +2,14 @@
 *{
     box-sizing: border-box;
 }
+
 .main-nav{
     display:flex;
     justify-content:space-between;
     background-color: #F93800;
     padding:2px;
     height:60px;
+    margin: 0;
 }
 .nav-brand{
     font-weight: bold;

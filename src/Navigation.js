@@ -102,18 +102,9 @@ export default function Navigation() {
         );
 
     }
-
-
-
-
-
     return (
-        <div>
-            {
-                current_user?LoggedInViewNav():LoggedOutViewNav()
-            }
-            {/* {LoggedInViewNav()}
-            {LoggedOutViewNav()} */}
+        <div >
+            {current_user ? LoggedInViewNav() : LoggedOutViewNav()}
         </div>
     )
 }

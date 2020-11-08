@@ -1,5 +1,12 @@
 
 const initialState = []
+//  the shape of the cart should be
+// [
+//     item_id: {
+//         image:str
+//         count: integer
+//     }
+// ]
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case "ADD_TO_CART":
