@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -81,27 +84,27 @@ hr{
   width:45%;
   margin: 50px auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 7px 7px 7px 7px;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 10px;
   /* background-color: #fdf1ec; */
-  background-color: #091946;
+  background-color: #283350;
 }
 .product-img-wrapper{
-
   width:50%;
   height:100%;
 }
 .product-img{
   width:15em;
-  border-radius: 7px 0 0 7px;
+  border-radius: 7px ;
 }
 
 .product-title{
   color:#F93800;
   background-color:#FFB500;
   padding:0.5rem;
-  font-weight:bold
+  font-weight:bold;
+  border-radius:7px;
 
 }
 .product-descripition{
@@ -112,6 +115,7 @@ hr{
   padding:0.5rem;
   border: solid 2px white;
   font-display: block;
+  border-radius:7px;
 
 }
 
@@ -126,11 +130,23 @@ hr{
   color: white;
   background-color:#F93800;
   border-radius: 10px;
-  margin:0.2rem;
+  margin:0.25rem;
   transition: background-color 0.3s
+}
+.product-price-buy >b{
+  color: #000000;
+  background-color:#FFB500;
+  padding:0.25rem;
+  border-radius: 5px;
+
+
 }
 .product-price-buy >button:hover {
   background-color:#FFB500;
+}
+.alert{
+  color: #FFFFFF !important;
+  font-weight: bold
 }
 
 

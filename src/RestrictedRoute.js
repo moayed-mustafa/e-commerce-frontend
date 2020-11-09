@@ -9,7 +9,6 @@ export default function RestrictedRoute(props){
 
     const ACTIVE_USER = useContext(userContext)
     const { current_user } = ACTIVE_USER
-    console.log(current_user)
     return (
         <Route  exact to={props.path}>
             {

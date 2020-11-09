@@ -7,11 +7,14 @@ import './index.css'
 import ProductCard from './ProductCard'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import { v4 as uuid } from 'uuid';
+
 
 
 export default function Products() {
 
-    const [dataFetched, setDataFetched] = useState(false)
+    const products = useSelector(st => st.products)
+    const [dataFetched, setDataFetched] = useState(products.length > 0 ? true:false)
     const dispatch = useDispatch()
     // fetch products
     useEffect(() => {
@@ -22,19 +25,18 @@ export default function Products() {
                 type: "CHANGE_PRODUCTS",
                 products: response.data
             })
-            setDataFetched(data => data = !data)
+            setDataFetched(true)
         }
         fetchData()
 
     }, [dispatch])
 
 
-    const products = useSelector(st => st.products)
 
 
     return (
         dataFetched?
-        <div className="products-container">
+        <div className="products-container" key={uuid()} >
 
                 {
                     products.map(product => (
@@ -43,11 +45,11 @@ export default function Products() {
                 }
             </div> :
              <Loader
-                type="Circles"
-                color="#283350"
+                type="ThreeDots"
+                color="#F93800"
                 height={250}
                 width={250}
-                style={{"marginTop":300}}
+                style={{"marginTop":"300"}}
             />
     )
 }

@@ -4,6 +4,7 @@ import {  useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loader from 'react-loader-spinner'
 import ProductCard from './ProductCard'
+import { v4 as uuid } from 'uuid';
 
 
 export default function Category() {
@@ -12,24 +13,39 @@ export default function Category() {
     const { pathname } = useLocation()
     const [fakeLoad, setFakeLoad] = useState(false)
     const ref = useRef(fakeLoad)
+    const key = uuid()
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setFakeLoad(!ref.current)
-        },1500)
+        },800)
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer)
+            setFakeLoad(!fakeLoad)
+
+        };
 
     })
 
 
-    let param = pathname.slice(pathname.lastIndexOf('/') +1, pathname.length)
+
+
+
+    let param = pathname.slice(pathname.lastIndexOf('/') + 1, pathname.length)
+
+    if (param.indexOf('-') !== -1) {
+        param = param.split('')
+        param.splice(param.indexOf('-'), 1, " ")
+        param = param.join('')
+    }
     const products = useSelector(st => st.products)
+
     const category = products.filter(product => product.category === param)
+
     return (
         fakeLoad?
-        <div className="products-container">
-
+        <div className="products-container" key={key}>
                 {
                     category.map(product => (
                         <ProductCard product={product} />
@@ -37,11 +53,11 @@ export default function Category() {
                 }
             </div> :
             <Loader
-            type="Circles"
-            color="#283350"
+            type="ThreeDots"
+            color="#FFB500"
             height={250}
             width={250}
-            style={{"marginTop":300}}
+            style={{"marginTop":"300"}}
         />
 
     )

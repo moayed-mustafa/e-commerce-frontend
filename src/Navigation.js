@@ -1,9 +1,10 @@
 
 import React, {useState, useContext} from 'react'
 import './Navigation.css'
-import { Button } from 'reactstrap'
-import { NavLink, useHistory, Link } from 'react-router-dom'
+import { Button, Badge } from 'reactstrap'
+import { NavLink, useHistory} from 'react-router-dom'
 import userContext from './userContext'
+import {useSelector} from 'react-redux'
 
 
 
@@ -13,14 +14,17 @@ export default function Navigation() {
     let [shevronOpen, setShevronOpen] = useState(false)
     const ACTIVE_USER = useContext(userContext)
     const { current_user, set_current_user } = ACTIVE_USER
-    const history = useHistory()
 
+    const history = useHistory()
+    const cart = useSelector(st => st.cart)
+
+    //  change the current_user state and close the drop down menu
     function logout() {
         set_current_user()
         setShevronOpen(false)
     }
-    function clickHandler(e) {
 
+    function clickHandler(e) {
         const url = `/products/${e.target.id}`
         history.push(url)
         setCategoriesOpen(!categoriesOpen)
@@ -28,7 +32,6 @@ export default function Navigation() {
     }
 
     function LoggedInViewNav() {
-
 
         return (
         <ul className="main-nav">
@@ -45,10 +48,10 @@ export default function Navigation() {
 
                         {categoriesOpen ?
                             <ul className="drop-down">
-                                <li className="nav-item nav-drop-down" id="men clothing" onClick={clickHandler}>men clothing</li>
-                                <li className="nav-item nav-drop-down" id="women clothing" onClick={clickHandler}>women clothing</li>
-                                <li className="nav-item nav-drop-down" id="jewelery" onClick={clickHandler}>jewelery</li>
-                                <li className="nav-item nav-drop-down" id="electronics" onClick={clickHandler}>electronics</li>
+                                <li className="nav-item nav-drop-down" id="men-clothing" onClick={clickHandler}>Men Clothing</li>
+                                <li className="nav-item nav-drop-down" id="women-clothing" onClick={clickHandler}>Women cClothing</li>
+                                <li className="nav-item nav-drop-down" id="jewelery" onClick={clickHandler}>Jewelery</li>
+                                <li className="nav-item nav-drop-down" id="electronics" onClick={clickHandler}>Electronics</li>
                             </ul>
                             : null}
                     </li>
@@ -74,7 +77,9 @@ export default function Navigation() {
                 </li>
                     <li className="nav-item m-1">
                         <Button className="li-btn">
-                            <i className="fas fa-shopping-cart"></i>
+                            <i className="fas fa-shopping-cart">
+                                <Badge style={{ marginLeft: 5 }} color="secondary">{cart.length}</Badge>
+                            </i>
                         </Button>
                     </li>
                 </span>

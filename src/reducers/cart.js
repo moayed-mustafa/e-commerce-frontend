@@ -1,23 +1,35 @@
 
 const initialState = []
-//  the shape of the cart should be
-// [
-//     item_id: {
-//         image:str
-//         count: integer
-//     }
-// ]
+
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case "ADD_TO_CART":
 
-            return state
+            const product = state.find(product=> product.id === action.product.id)
+            if (product === undefined) {
+                // first time shop
+                action.product.count = 1;
+                return [...state, action.product]
+            } else {
+                action.product.count += 1;
+                let newState = state.filter(p => p.id !== product.id)
+                newState.push(action.product)
+                return newState
+
+            }
+
+
         case "REMOVE_FORM_CART":
+            if (action.product.count > 1) {
+                action.product.count -= 1;
+                let newState = state.filter(p => p.id !== action.product.id)
+                newState.push(action.product)
+                return newState
+            }
+            return state.filter(p => p.id !== action.product.id)
 
-            return state
         case "CLEAR_CART":
-
-            return state
+            return []
 
         default:
             return state
