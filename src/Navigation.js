@@ -76,7 +76,7 @@ export default function Navigation() {
                             : null}
                 </li>
                     <li className="nav-item m-1">
-                        <Button className="li-btn">
+                        <Button className="li-btn" onClick={()=> history.push("/cart")}>
                             <i className="fas fa-shopping-cart">
                                 <Badge style={{ marginLeft: 5 }} color="secondary">{cart.length}</Badge>
                             </i>

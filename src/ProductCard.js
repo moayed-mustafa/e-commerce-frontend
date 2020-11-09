@@ -27,14 +27,13 @@ export default function ProductCard({ product }) {
     const { _token, username } = useContext(userContext).current_user
     const key = uuid()
 
-    async function fakeCartApi(e) {
+    async function cartEvent(e) {
 
         const product_id = e.target.parentElement.id || e.target.id
         const action = e.target.parentElement.name || e.target.name
         const type = action === "add" ? "ADD_TO_CART" : "REMOVE_FORM_CART"
         const message = action === "add" ? "Added To Cart" : "Removed From Cart"
         const backgroundColor = action === "add" ? "#FFB500" : "#F93800"
-        console.log(action)
 
         const data = { _token, username, product_id, action }
 
@@ -85,11 +84,11 @@ export default function ProductCard({ product }) {
                     <div className='product-price-buy' >
                     <b >{`Price: ${product.price}`}$</b>
 
-                    <button id={product.id} name="add" onClick={fakeCartApi} >
+                    <button id={product.id} name="add" onClick={cartEvent} >
                         <i name="add" className="fas fa-cart-plus" ></i>
                     </button>
                     {checkInCart(product.id) &&
-                        <button id={product.id} name="remove" onClick={fakeCartApi} >
+                        <button id={product.id} name="remove" onClick={cartEvent} >
                              <i  name="remove" className="fas fa-minus-square" ></i>
                         </button>
                     }

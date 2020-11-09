@@ -149,4 +149,52 @@ hr{
   font-weight: bold
 }
 
+.cart-ul{
+  /* margin: 0.5rem; */
+  list-style: none;
+
+}
+.cart-product{
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  border: solid 2px black;
+  border-radius: 10px;
+  margin: 1rem;
+  padding: 0.5rem;
+  width: 80%;
+  font-weight: bold;
+  background-color: #f3eeeae1
+
+
+}
+.cart-ul > li{
+  list-style: none;
+}
+.cart-image {
+  width: 33.3%
+}
+.cart-image > img {
+  width: 25%
+}
+.cart-title{
+  margin-right: 1.5rem;
+}
+.cart-btns{
+  margin-left: 0.5rem
+}
+.cart-btns > button{
+  margin-left: 0.5rem
+}
+.total-span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.total-span > button{
+  margin: 0.75rem
+}
+
+
 

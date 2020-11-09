@@ -18,7 +18,6 @@ export default function cartReducer(state = initialState, action) {
 
             }
 
-
         case "REMOVE_FORM_CART":
             if (action.product.count > 1) {
                 action.product.count -= 1;

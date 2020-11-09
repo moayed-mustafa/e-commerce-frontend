@@ -9,8 +9,8 @@ import Homepage from './Homepage'
 import Navigation from './Navigation'
 import PrivateRoute from './PrivateRoute'
 import RestrictedRoute from './RestrictedRoute'
-import TestPrivate from './TestPrivate'
 import Category from './Category.js'
+import Cart from './Cart.js'
 
 
 
@@ -55,9 +55,8 @@ export default function Routes() {
                             <Login/>
                     </RestrictedRoute>
 
-                    {/*  Dont forget to remove this */}
-                    <PrivateRoute path="/tester">
-                        <TestPrivate/>
+                    <PrivateRoute path="/cart">
+                        <Cart/>
                     </PrivateRoute>
 
                     <PrivateRoute exact path="/products/:category">
