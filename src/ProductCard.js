@@ -20,7 +20,6 @@ export default function ProductCard({ product }) {
 
     function checkInCart(id) {
         if(cart.length ===0) return false
-
         return cart.some(item => item.id === id);
 
     }
@@ -36,7 +35,6 @@ export default function ProductCard({ product }) {
         const backgroundColor = action === "add" ? "#FFB500" : "#F93800"
 
         const data = { _token, username, product_id, action }
-
 
         try {
             await ServerApi.cartAction( data)

@@ -13,8 +13,13 @@ export default class ServerApi{
 
     static async cartAction(data) {
         const { product_id, username, action, _token } = data;
-        await axios.post(`${BASE_URL}/carts/${username}/${action}`,{product_id, _token} )
+        await axios.post(`${BASE_URL}/carts/${username}/${action}`, { product_id, _token })
 
+    }
+
+    static async order(data) {
+        const { username, _token } = data;
+        await axios.post(`${BASE_URL}/orders/${username}/order`, {_token})
     }
 
 }

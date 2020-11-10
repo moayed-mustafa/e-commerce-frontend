@@ -13,23 +13,32 @@ import { v4 as uuid } from 'uuid';
 
 export default function Products() {
 
+
     const products = useSelector(st => st.products)
-    const [dataFetched, setDataFetched] = useState(products.length > 0 ? true:false)
+    const [dataFetched, setDataFetched] = useState(products.length > 0 ? true : false)
     const dispatch = useDispatch()
     // fetch products
     useEffect(() => {
-        //  request to productsApi
-        async function fetchData() {
-            const response = await fetchProducts()
-            dispatch({
-                type: "CHANGE_PRODUCTS",
-                products: response.data
-            })
-            setDataFetched(true)
-        }
-        fetchData()
+        try {
 
-    }, [dispatch])
+            console.log('fetching')
+            //  request to productsApi
+            async function fetchData() {
+                const response = await fetchProducts()
+                dispatch({
+                    type: "CHANGE_PRODUCTS",
+                    products: response.data
+                })
+                setDataFetched(true)
+            }
+            fetchData()
+        } catch (e) {
+            console.log(e)
+            console.log('API not working')
+        }
+
+
+    }, [])
 
 
 

@@ -76,6 +76,12 @@ hr{
   flex-wrap: wrap;
 
 }
+.badge{
+  background-color: #F93800 !important;
+  color: #283350 !important;
+  font-family: Arial;
+  width: 42%;
+}
 
 /* ============================================== */
 
@@ -146,7 +152,8 @@ hr{
 }
 .alert{
   color: #FFFFFF !important;
-  font-weight: bold
+  font-weight: bold;
+  margin-top: 0.25rem;
 }
 
 .cart-ul{
@@ -158,13 +165,14 @@ hr{
   display: flex;
   justify-content: baseline;
   align-items: center;
-  border: solid 2px black;
+  border: solid 2px #000000;
   border-radius: 10px;
   margin: 1rem;
   padding: 0.5rem;
   width: 80%;
   font-weight: bold;
-  background-color: #f3eeeae1
+  background-color: #FFB500;
+  color: #FFFFFF
 
 
 }
@@ -175,25 +183,49 @@ hr{
   width: 33.3%
 }
 .cart-image > img {
-  width: 25%
+  width: 33.3%
 }
 .cart-title{
   margin-right: 1.5rem;
 }
 .cart-btns{
-  margin-left: 0.5rem
+  margin-left: 0.5rem;
+
 }
 .cart-btns > button{
-  margin-left: 0.5rem
+  margin: 0.5rem;
+  background-color: #F93800;
+  color: #FFFFFF;
+  transition: all 0.7s;
+}
+.cart-btns > button:hover{
+  background-color: #283350;
+  color: #F93800;
+
 }
 .total-span{
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
+
 }
 .total-span > button{
-  margin: 0.75rem
+  margin-top: -0.5rem;
+  margin-right: 0.5rem;
+  background-color: #F93800;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 0.5rem;
+
+}
+.empty-cart{
+  background-color:#FFB500;
+  color: #283350;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem;
 }
 
 
