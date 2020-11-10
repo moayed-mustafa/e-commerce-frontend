@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute'
 import RestrictedRoute from './RestrictedRoute'
 import Category from './Category.js'
 import Cart from './Cart.js'
+import Wishlist from './Wishlist.js'
 
 
 
@@ -20,12 +21,10 @@ import Cart from './Cart.js'
 export default function Routes() {
 
     const ACTIVE_USER = JSON.parse(localStorage.getItem("user"))
-
-        const [current_user, set_current_user] = useState(ACTIVE_USER)
-
+    const [current_user, set_current_user] = useState(ACTIVE_USER)
 
     function checkUser(user) {
-        if (! user || !user._token) {
+        if (!user || !user._token) {
             localStorage.removeItem("user");
 
         }else {
@@ -34,9 +33,6 @@ export default function Routes() {
         set_current_user(user)
 
     }
-
-
-
 
     return (
 
@@ -57,6 +53,10 @@ export default function Routes() {
 
                     <PrivateRoute path="/cart">
                         <Cart/>
+                    </PrivateRoute>
+
+                    <PrivateRoute path="/wishlist">
+                        <Wishlist/>
                     </PrivateRoute>
 
                     <PrivateRoute exact path="/products/:category">

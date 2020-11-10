@@ -21,7 +21,7 @@ export default function Cart() {
     })
     const history = useHistory()
     const [isEmpty, setIsEmpty] = useState(cart.length === 0)
-    console.log(isEmpty )
+
 
 
 

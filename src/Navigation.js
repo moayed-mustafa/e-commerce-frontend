@@ -17,6 +17,7 @@ export default function Navigation() {
 
     const history = useHistory()
     const cart = useSelector(st => st.cart)
+    const wishlist = useSelector(st => st.wishlist)
 
     //  change the current_user state and close the drop down menu
     function logout() {
@@ -68,15 +69,28 @@ export default function Navigation() {
 
                                     <li className="nav-item nav-drop-down">
                                         <i className="fas fa-cog"></i>
-                                    </li>
+                                </li>
+                                <li className="nav-item nav-drop-down" onClick={() =>
+                                    {setShevronOpen(false)
+                                    history.push("/wishlist")}
+
+                                }>
+                                    <i className="fas fa-star">
+                                        <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
+                                    </i>
+                                </li>
                                     <li className="nav-item nav-drop-down" onClick={logout}>
                                         <i className="fas fa-sign-out-alt"></i>
                                     </li>
+
                             </ul>
                             : null}
                 </li>
                     <li className="nav-item m-1">
-                        <Button className="li-btn" onClick={()=> history.push("/cart")}>
+                        <Button className="li-btn" onClick={() =>
+                            history.push("/cart",
+
+                            )}>
                             <i className="fas fa-shopping-cart">
                                 <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{cart.length}</Badge>
                             </i>

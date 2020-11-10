@@ -87,13 +87,12 @@ hr{
 
 .card-wrapper{
   height:50%;
-  width:45%;
+  width:35%;
   margin: 50px auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  border-radius: 10px;
-  /* background-color: #fdf1ec; */
+  border-radius: 15px;
   background-color: #283350;
 }
 .product-img-wrapper{
@@ -119,7 +118,7 @@ hr{
   color:#ffffff;
   background-color:#F93800;
   padding:0.5rem;
-  border: solid 2px white;
+  border: solid 1px white;
   font-display: block;
   border-radius:7px;
 
@@ -155,6 +154,7 @@ hr{
   font-weight: bold;
   margin-top: 0.25rem;
 }
+/* ============================================== */
 
 .cart-ul{
   /* margin: 0.5rem; */
@@ -173,8 +173,19 @@ hr{
   font-weight: bold;
   background-color: #FFB500;
   color: #FFFFFF
-
-
+}
+.wishlist-product{
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  border: solid 2px #000000;
+  border-radius: 10px;
+  margin: 1rem;
+  padding: 0.5rem;
+  width: 80%;
+  font-weight: bold;
+  background-color: #283350;
+  color: #FFFFFF
 }
 .cart-ul > li{
   list-style: none;
@@ -197,10 +208,24 @@ hr{
   background-color: #F93800;
   color: #FFFFFF;
   transition: all 0.7s;
+  border-radius: 5px;
 }
 .cart-btns > button:hover{
   background-color: #283350;
   color: #F93800;
+
+}
+.wishlist-btns > button{
+  margin: 0.5rem;
+  background-color: #FFB500;
+  color:#F93800;
+  transition: all 0.7s;
+  border-radius: 5px;
+
+}
+.wishlist-btns > button:hover{
+  background-color: #F93800;
+  color: #283350;
 
 }
 .total-span{

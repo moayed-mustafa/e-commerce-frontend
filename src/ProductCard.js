@@ -16,6 +16,7 @@ export default function ProductCard({ product }) {
     const dispatch = useDispatch()
 
     const cart = useSelector(st => st.cart)
+    const wishlist = useSelector(st => st.wishlist)
 
 
     function checkInCart(id) {
@@ -23,11 +24,17 @@ export default function ProductCard({ product }) {
         return cart.some(item => item.id === id);
 
     }
+    function checkInWishlist(id) {
+        if (wishlist.length === 0) return false
+        return wishlist.some(item => item.id === id);
+
+    }
+
+
     const { _token, username } = useContext(userContext).current_user
     const key = uuid()
 
     async function cartEvent(e) {
-
         const product_id = e.target.parentElement.id || e.target.id
         const action = e.target.parentElement.name || e.target.name
         const type = action === "add" ? "ADD_TO_CART" : "REMOVE_FORM_CART"
@@ -38,30 +45,56 @@ export default function ProductCard({ product }) {
 
         try {
             await ServerApi.cartAction( data)
-            setFlash(data =>data = {
-                condition: true,
-                message,
-                backgroundColor
+            // setFlash(data =>data = {condition: true,message,backgroundColor})
+            // setTimeout(() => {
+            //     setFlash(data =>data = {condition: false,message: "",backgroundColor: ""})}, 3000)
+            flashControl(message, backgroundColor)
 
-                })
-                setTimeout(() => {
-                    setFlash(data =>data = {
-                        condition: false,
-                        message: "",
-                        backgroundColor: ""
+                dispatch({type,product })
+        } catch (e) {
+            console.log(e)
+        }
 
-                        })
-                }, 3000)
+    }
 
-                dispatch({
-                    type,
-                    product
-                })
+    async function wishlistEvent(e) {
+        const action = e.target.parentElement.name || e.target.name
+        const type = action === "add" ? "ADD_TO_WISHLIST" : "REMOVE_FORM_WISHLIST"
+        const message = action === "add" ? "Added To Wishlist" : "Removed From Wishlist"
+        const backgroundColor = action === "add" ? "#FFB500" : "#F93800"
+        const product_id = product.id
+        console.log(e.target.id, product.id, action, type, username, _token)
+        const data = { _token, username, product_id, action }
+        // call server
+        try {
+            await ServerApi.wishlistAction(data)
+            // setFlash(data =>data = {condition: true,message,backgroundColor})
+            // setTimeout(() => {
+            //     setFlash(data =>data = {condition: false,message: "",backgroundColor: ""})}, 3000)
+            flashControl(message,backgroundColor)
+                dispatch({type,product })
 
         } catch (e) {
             console.log(e)
         }
 
+    }
+
+    function flashControl(message, backgroundColor) {
+        setFlash(data =>data = {
+            condition: true,
+            message ,
+            backgroundColor
+
+            })
+            setTimeout(() => {
+                setFlash(data =>data = {
+                    condition: false,
+                    message: "",
+                    backgroundColor: ""
+
+                    })
+            }, 3000)
     }
 
 
@@ -91,11 +124,17 @@ export default function ProductCard({ product }) {
                         </button>
                     }
 
-                    {/* the wishlist button is the same, the difference is that it's either */}
-                    {/* a filled heart or not */}
-                    <button >
-                        <i className="far fa-heart"></i>
-                    </button>
+
+                    {checkInWishlist(product.id) ?
+
+                        <button name= "remove" onClick={wishlistEvent}>
+                        <i name= "remove" className="fas fa-heart"></i>
+                        </button> :
+                        <button name="add"  onClick={wishlistEvent} >
+                        <i  name="add" className="far fa-heart"></i>
+                        </button>
+
+                }
                 </div>
                 {flash.condition && <Alert style={{backgroundColor:flash.backgroundColor}} className="alert">{flash.message}</Alert>}
                 </div>

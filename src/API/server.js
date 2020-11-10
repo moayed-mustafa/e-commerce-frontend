@@ -16,6 +16,11 @@ export default class ServerApi{
         await axios.post(`${BASE_URL}/carts/${username}/${action}`, { product_id, _token })
 
     }
+    static async wishlistAction(data) {
+        const { product_id, username, action, _token } = data;
+        await axios.post(`${BASE_URL}/wishlist/${username}/${action}`, { product_id, _token })
+
+    }
 
     static async order(data) {
         const { username, _token } = data;
