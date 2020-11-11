@@ -12,6 +12,7 @@ import RestrictedRoute from './RestrictedRoute'
 import Category from './Category.js'
 import Cart from './Cart.js'
 import Wishlist from './Wishlist.js'
+import Orders from './Orders.js'
 
 
 
@@ -57,6 +58,9 @@ export default function Routes() {
 
                     <PrivateRoute path="/wishlist">
                         <Wishlist/>
+                    </PrivateRoute>
+                    <PrivateRoute path="/orders">
+                        <Orders/>
                     </PrivateRoute>
 
                     <PrivateRoute exact path="/products/:category">

@@ -1,7 +1,7 @@
 
 import React, {useState, useContext} from 'react'
 import './Navigation.css'
-import { Button, Badge } from 'reactstrap'
+import { Button, Badge, Tooltip } from 'reactstrap'
 import { NavLink, useHistory} from 'react-router-dom'
 import userContext from './userContext'
 import {useSelector} from 'react-redux'
@@ -11,9 +11,12 @@ import {useSelector} from 'react-redux'
 export default function Navigation() {
 
     let [categoriesOpen, setCategoriesOpen] = useState(false)
-    let [shevronOpen, setShevronOpen] = useState(false)
+    let [chevron, setChevronOpen] = useState(false)
     const ACTIVE_USER = useContext(userContext)
     const { current_user, set_current_user } = ACTIVE_USER
+    // const [tooltipOpen, setTooltipOpen] = useState(false);
+
+    // const toggle = () => setTooltipOpen(!tooltipOpen);
 
     const history = useHistory()
     const cart = useSelector(st => st.cart)
@@ -22,7 +25,7 @@ export default function Navigation() {
     //  change the current_user state and close the drop down menu
     function logout() {
         set_current_user()
-        setShevronOpen(false)
+        setChevronOpen(false)
     }
 
     function clickHandler(e) {
@@ -42,15 +45,25 @@ export default function Navigation() {
                     </NavLink>
 
                 </li>
+
                 <span className="li-span">
-                <li className="nav-item m-1">
+                <li className="nav-item m-1 category">
                     <Button className="li-btn"
                         onClick={()=> setCategoriesOpen(!categoriesOpen)}>Categories</Button>
 
                         {categoriesOpen ?
                             <ul className="drop-down">
-                                <li className="nav-item nav-drop-down" id="men-clothing" onClick={clickHandler}>Men Clothing</li>
-                                <li className="nav-item nav-drop-down" id="women-clothing" onClick={clickHandler}>Women cClothing</li>
+
+                                <li className="nav-item nav-drop-down " id="men-clothing"
+                                    onClick={clickHandler}>Men Clothing
+
+
+                                    </li>
+
+                                    <li className="nav-item nav-drop-down"
+                                        id="women-clothing" onClick={clickHandler}>Women Clothing
+                                    </li>
+
                                 <li className="nav-item nav-drop-down" id="jewelery" onClick={clickHandler}>Jewelery</li>
                                 <li className="nav-item nav-drop-down" id="electronics" onClick={clickHandler}>Electronics</li>
                             </ul>
@@ -59,28 +72,36 @@ export default function Navigation() {
 
                     <li className="nav-item m-1">
                         <Button className="li-btn"
-                            onClick={() => setShevronOpen(!shevronOpen)}>
+                            onClick={() => setChevronOpen(!chevron)}>
                             <i className="fas fa-chevron-down"></i>
                         </Button>
 
-                        {shevronOpen ?
+                        {chevron ?
                             <ul className="drop-down">
-                                    <li className="nav-item nav-drop-down">orders</li>
+                                <li style={{ display: "inline" }} className="nav-item nav-drop-down" onClick={() => {
+                                    history.push('/orders')
+                                    setChevronOpen(!chevron)
+                                }}>
+                                orders
+                                    </li>
 
-                                    <li className="nav-item nav-drop-down">
-                                        <i className="fas fa-cog"></i>
+                                <li className="nav-item nav-drop-down" id="cog">
+                                    Update user
+                                    {/* <i className="fas fa-cog">Update user</i> */}
+
                                 </li>
                                 <li className="nav-item nav-drop-down" onClick={() =>
-                                    {setShevronOpen(false)
+                                    {setChevronOpen(false)
                                     history.push("/wishlist")}
 
                                 }>
-                                    <i className="fas fa-star">
-                                        <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
-                                    </i>
+                                    {/* <i className="fas fa-star"> */}
+                                      Wishlist  <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
+                                    {/* </i> */}
                                 </li>
-                                    <li className="nav-item nav-drop-down" onClick={logout}>
-                                        <i className="fas fa-sign-out-alt"></i>
+                                <li className="nav-item nav-drop-down" onClick={logout}>
+                                    Logout
+                                        {/* <i className="fas fa-sign-out-alt"></i> */}
                                     </li>
 
                             </ul>

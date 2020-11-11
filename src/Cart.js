@@ -13,14 +13,13 @@ import {useHistory} from 'react-router-dom'
 
 export default function Cart() {
     const cart = useSelector(st => st.cart)
-    const total = Math.round(cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.count },0))
+    const total = Math.ceil(cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.count },0))
     const [flash, setFlash] = useState({
         condition: false,
         message: "",
         backgroundColor: ""
     })
     const history = useHistory()
-    const [isEmpty, setIsEmpty] = useState(cart.length === 0)
 
 
 
@@ -99,7 +98,7 @@ export default function Cart() {
 
 
 
-        isEmpty ?
+        cart.length === 0 ?
             <h3 className="empty-cart"> Your cart is empty :(</h3> :
                 <div className='cart-div' key={uuid()}>
                 <ul className='cart-ul' key={uuid()}>

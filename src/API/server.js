@@ -26,5 +26,12 @@ export default class ServerApi{
         const { username, _token } = data;
         await axios.post(`${BASE_URL}/orders/${username}/order`, {_token})
     }
+    static async orders(data) {
+
+        const { username, _token } = data;
+        //* */  get request don't take bodies, just change the rouet on the backend
+        const res = await axios.post(`${BASE_URL}/orders`, {username, _token});
+        return res.data
+    }
 
 }

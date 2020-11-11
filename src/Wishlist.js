@@ -10,7 +10,7 @@ import { v4 as uuid } from 'uuid';
 export default function Wishlist() {
 
     const wishlist = useSelector(st => st.wishlist)
-    const [isEmpty, setIsEmpty] = useState(wishlist.length === 0)
+    // const [isEmpty, setIsEmpty] = useState(wishlist.length === 0)
     const dispatch = useDispatch()
     const { _token, username } = useContext(userContext).current_user
     const [flash, setFlash] = useState({
@@ -42,7 +42,7 @@ export default function Wishlist() {
     }
 
 
-    return (isEmpty?
+    return (wishlist.length === 0?
         <h3 className="empty-cart"> Make a wish</h3> :
             <div className='cart-div' key={uuid()}>
             <ul className='cart-ul' key={uuid()}>
