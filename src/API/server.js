@@ -34,4 +34,13 @@ export default class ServerApi{
         return res.data
     }
 
+    static async updateUser(data, username) {
+
+        let valuesObj = {};
+        const valuesList = Object.entries(data).filter(val => val[1].length !== 0);
+        valuesList.map(item => valuesObj[item[0]] = item[1]);
+        await axios.patch(`${BASE_URL}/users/${username}`, valuesObj)
+
+    }
+
 }

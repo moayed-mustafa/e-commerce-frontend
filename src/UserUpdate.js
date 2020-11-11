@@ -2,67 +2,64 @@ import React, {useState, useContext} from 'react'
 import { useFormik } from 'formik'
 import { Form, FormGroup, Label, Input,Button, Row, Col } from 'reactstrap';
 import './index.css'
-import Auth from './API/auth'
+import ServerApi from './API/server'
 import { useHistory } from 'react-router-dom'
 import userContext from './userContext'
+import {Alert} from 'reactstrap'
 
 
-export default function Signup() {
+export default function UpdateUser() {
 
     const history = useHistory()
     const { current_user, set_current_user } = useContext(userContext)
 
+    const {username, _token} = current_user
 
-    let [flash, setFlash] = useState('')
+
+    const [flash, setFlash] = useState({condition:false, message:"", backgroundColor: "", color:""})
 
     const validate = values => {
         const errors = {}
         // username validation
-        if (values.username=== "") {
-            errors.username = "Required!"
-        }else if (values.username.length > 18) {
+        if (values.username.length > 18) {
             errors.username = 'Must be 18 characters or less';
           }else if (values.username.length < 4) {
             errors.username = 'Must be 4 characters or more';
         }
         // password validation
         if (!values.password) {
-            errors.password ="Required!"
-        } else if (values.password.length <6) {
+            errors.password = "Required!"
+
+        }else if (values.password.length <6) {
             errors.password ='Must be 6 charachters or more'
         }
-        //  * figure this one out later
-        // else if (!/[A-Z]$/i.test(values.password)) {
-        //     errors.password ='Must have at least one Capital letter'
-        // }
 
         // firstname validation
-        if (values.first_name=== "") {
-            errors.first_name = "Required!"
-        }else if (values.first_name.length > 12) {
-            errors.first_name = 'Must be 12 characters or less';
-          }else if (values.first_name.length < 2) {
-            errors.first_name = 'Must be 2 characters or more';
+        if (values.first_name) {
+            if ( values.first_name.length > 12) {
+                errors.first_name = 'Must be 12 characters or less';
+              }else if (values.first_name.length < 2) {
+                errors.first_name = 'Must be 2 characters or more';
+            }
+
         }
         // lastname validation
-        if (values.last_name=== "") {
-            errors.last_name = "Required!"
-        }else if (values.last_name.length > 12) {
-            errors.last_name = 'Must be 12 characters or less';
-          }else if (values.last_name.length < 2) {
-            errors.last_name = 'Must be 2 characters or more';
+        if (values.last_name) {
+            if (values.last_name.length > 12) {
+               errors.last_name = 'Must be 12 characters or less';
+             }else if (values.last_name.length < 2) {
+               errors.last_name = 'Must be 2 characters or more';
+           }
+
         }
 
         // email validation
-        if (!values.email) {
-            errors.email = 'Required';
-          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
-          }
-        // address validation
-        if (!values.address) {
-            errors.address = 'Required';
-          }
+        if (values.email) {
+            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+               errors.email = 'Invalid email address';
+             }
+        }
+
         return errors;
 
     }
@@ -77,27 +74,42 @@ export default function Signup() {
             address:""
         },
         validate,
-        onSubmit: async(values) => {
-            //  here is where my api connection to  the signup route will happen
-            // * find a way to error handle the signup
-            try {
-                let user = await Auth.signup(values)
-                console.log(user)
-                set_current_user(user)
+         onSubmit: async(values) => {
 
-                history.push('/')
+
+            try {
+
+                values._token = _token;
+                await ServerApi.updateUser(values, username)
+                flashControl("User data updated successfuly, you will be redirected to log in soon",
+                "#FFB500","#283350")
+
+                setTimeout(() => {
+                    set_current_user()
+                    history.push('/login')
+                }, 3000)
 
             } catch (e) {
-                setFlash(flash=> `Username ${values.username} already exists`)
-                console.log(flash)
+                flashControl(e.message,"#F93800","#FFB500")
             }
         }
     })
 
+    function flashControl(message, backgroundColor, color) {
+        setFlash(data =>data = {
+            condition: true,
+            message ,
+            backgroundColor,
+             color
+
+            })
+
+    }
+
     return (
         <div className="form-div">
 
-        <h3>Signup Form</h3>
+        <h3>Update user</h3>
         <Form  className="form" onSubmit={formik.handleSubmit}>
             <Row>
                 <Col>
@@ -206,9 +218,9 @@ export default function Signup() {
 
                 </Col>
             </Row>
-                <Button type="submit"className="li-btn">Signup</Button>
+                <Button type="submit"className="li-btn">Update</Button>
             </Form>
-            {flash && <strong className="flash">{flash}</strong>}
+            {flash.condition && <Alert style={{backgroundColor:flash.backgroundColor, color:flash.color}}>{flash.message} </Alert>}
 
         </div>
     )

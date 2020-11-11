@@ -14,9 +14,21 @@ export default function Navigation() {
     let [chevron, setChevronOpen] = useState(false)
     const ACTIVE_USER = useContext(userContext)
     const { current_user, set_current_user } = ACTIVE_USER
-    // const [tooltipOpen, setTooltipOpen] = useState(false);
+    //  update user tooltip
+    const [cogOpen, setCogOpen] = useState(false);
+    const toggleCog = () => setCogOpen(!cogOpen);
 
-    // const toggle = () => setTooltipOpen(!tooltipOpen);
+    // wishlist tooltip
+    const [starOpen, setStarOpen] = useState(false);
+    const toggleStar = () => setStarOpen(!starOpen);
+
+    // wishlist tooltip
+    const [logoutOpen, setlogoutOpen] = useState(false);
+    const togglelogOut = () => setlogoutOpen(!logoutOpen);
+
+
+
+
 
     const history = useHistory()
     const cart = useSelector(st => st.cart)
@@ -56,8 +68,6 @@ export default function Navigation() {
 
                                 <li className="nav-item nav-drop-down " id="men-clothing"
                                     onClick={clickHandler}>Men Clothing
-
-
                                     </li>
 
                                     <li className="nav-item nav-drop-down"
@@ -85,23 +95,30 @@ export default function Navigation() {
                                 orders
                                     </li>
 
-                                <li className="nav-item nav-drop-down" id="cog">
-                                    Update user
-                                    {/* <i className="fas fa-cog">Update user</i> */}
+                                <li className="nav-item nav-drop-down" id="cog" onClick={() => {
 
+                                    setChevronOpen(false)
+                                    history.push('/update-user')
+                                }}>
+                                    <i className="fas fa-cog" >  </i>
+                                    <Tooltip placement="top" isOpen={cogOpen} autohide={false}
+                                    target="cog" toggle={toggleCog}>Update User</Tooltip>
                                 </li>
-                                <li className="nav-item nav-drop-down" onClick={() =>
+                                <li className="nav-item nav-drop-down" id="star" onClick={() =>
                                     {setChevronOpen(false)
                                     history.push("/wishlist")}
 
                                 }>
-                                    {/* <i className="fas fa-star"> */}
-                                      Wishlist  <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
-                                    {/* </i> */}
+                                    <i className="fas fa-star">
+                                       <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
+                                    </i>
+                                    <Tooltip placement="top" isOpen={starOpen} autohide={false}
+                                    target="star" toggle={toggleStar}>Wishlist</Tooltip>
                                 </li>
-                                <li className="nav-item nav-drop-down" onClick={logout}>
-                                    Logout
-                                        {/* <i className="fas fa-sign-out-alt"></i> */}
+                                <li className="nav-item nav-drop-down" id="logout" onClick={logout}>
+                                    <i className="fas fa-sign-out-alt"></i>
+                                    <Tooltip placement="top" isOpen={logoutOpen} autohide={false}
+                                    target="logout" toggle={togglelogOut}>Logout</Tooltip>
                                     </li>
 
                             </ul>

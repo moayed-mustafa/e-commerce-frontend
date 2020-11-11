@@ -154,6 +154,14 @@ hr{
   font-weight: bold;
   margin-top: 0.25rem;
 }
+.orders-alert{
+  background-color: #FFB500 !important;
+  font-weight: bold !important;
+  font-size: larger;
+  margin-top: 0.25rem;
+  color:#283350 !important;
+  z-index: -1;
+}
 /* ============================================== */
 
 .cart-ul{

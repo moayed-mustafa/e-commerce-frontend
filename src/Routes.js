@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 import UserContext from './userContext'
 import Signup from './Signup'
 import Login from './Login'
+import UpdateUser from './UserUpdate'
 import Homepage from './Homepage'
-// import Tester from './ProductsList'
 import Navigation from './Navigation'
 import PrivateRoute from './PrivateRoute'
 import RestrictedRoute from './RestrictedRoute'
@@ -32,7 +32,6 @@ export default function Routes() {
                 localStorage.setItem("user",JSON.stringify(user))
         }
         set_current_user(user)
-
     }
 
     return (
@@ -51,6 +50,9 @@ export default function Routes() {
                     <RestrictedRoute exact path="/login">
                             <Login/>
                     </RestrictedRoute>
+                    <PrivateRoute exact path="/update-user">
+                            <UpdateUser/>
+                    </PrivateRoute>
 
                     <PrivateRoute path="/cart">
                         <Cart/>

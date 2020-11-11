@@ -45,9 +45,6 @@ export default function ProductCard({ product }) {
 
         try {
             await ServerApi.cartAction( data)
-            // setFlash(data =>data = {condition: true,message,backgroundColor})
-            // setTimeout(() => {
-            //     setFlash(data =>data = {condition: false,message: "",backgroundColor: ""})}, 3000)
             flashControl(message, backgroundColor)
 
                 dispatch({type,product })
@@ -68,9 +65,6 @@ export default function ProductCard({ product }) {
         // call server
         try {
             await ServerApi.wishlistAction(data)
-            // setFlash(data =>data = {condition: true,message,backgroundColor})
-            // setTimeout(() => {
-            //     setFlash(data =>data = {condition: false,message: "",backgroundColor: ""})}, 3000)
             flashControl(message,backgroundColor)
                 dispatch({type,product })
 

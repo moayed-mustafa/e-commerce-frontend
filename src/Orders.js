@@ -14,12 +14,6 @@ export default function Orders() {
     const { _token, username } = useContext(userContext).current_user
     const [orders, setOrders] = useState([])
 
-    // const [flash, setFlash] = useState({
-    //     condition: false,
-    //     message: "",
-    //     backgroundColor: ""
-    // })
-
     const products = useSelector(st => st.products)
 
 
@@ -63,7 +57,7 @@ export default function Orders() {
     }, [])
 
     return (
-        orders ? <div className='cart-div' key={uuid()}>
+        orders.length > 0 ? <div className='cart-div' key={uuid()}>
         <ul className='cart-ul' key={uuid()}>
             {
                 orders.map(product =>
@@ -88,7 +82,7 @@ export default function Orders() {
 
         </div > :
             <div>
-            <Alert className="alert"> You have no orders </Alert>
+            <Alert className="orders-alert" > You have not made any orders</Alert>
         </div >
 
 

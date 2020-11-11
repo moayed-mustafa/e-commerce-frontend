@@ -22,9 +22,6 @@ export default function Cart() {
     const history = useHistory()
 
 
-
-
-
     const dispatch = useDispatch()
     const { _token, username } = useContext(userContext).current_user
 
@@ -72,16 +69,13 @@ export default function Cart() {
 
     async function cartEvent(e) {
         const product_id = e.target.parentElement.id || e.target.id
-        console.log(product_id)
         const action = e.target.parentElement.name || e.target.name
         const type = action === "add" ? "ADD_TO_CART" : "REMOVE_FORM_CART"
-
 
 
         try {
             const data = { _token, username, product_id, action }
             await ServerApi.cartAction(data)
-            console.log(typeof product_id)
             const product = cart.filter(p => p.id === Number(product_id))[0]
 
             dispatch({
@@ -95,11 +89,8 @@ export default function Cart() {
 
 
     return (
-
-
-
         cart.length === 0 ?
-            <h3 className="empty-cart"> Your cart is empty :(</h3> :
+            <h3 className="empty-cart"> Your cart is empty </h3> :
                 <div className='cart-div' key={uuid()}>
                 <ul className='cart-ul' key={uuid()}>
                     {
