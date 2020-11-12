@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { Form, FormGroup, Label, Input,Button,  Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input,Button} from 'reactstrap';
 import './index.css'
 import { useFormik } from 'formik'
 import Auth from './API/auth'

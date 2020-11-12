@@ -1,7 +1,7 @@
 
 
 import React, {useState, useContext} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 import './index.css'
 import userContext from './userContext'
@@ -11,9 +11,9 @@ import ServerApi from './API/server'
 import {useHistory} from 'react-router-dom'
 
 
-export default function Cart() {
+export function Cart() {
     const cart = useSelector(st => st.cart)
-    const total = Math.ceil(cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.count },0))
+    let total = Math.ceil(cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.count },0))
     const [flash, setFlash] = useState({
         condition: false,
         message: "",
@@ -136,3 +136,17 @@ export default function Cart() {
 
     )
 }
+
+// const mapStateToProps  = (state) =>({cart:state.cart})
+//   export default  connect(mapStateToProps)(Cart)
+const ConnectedCart = connect(state => ({ cart: state.cart })
+    // ,dispatch => ({
+    //     add : ()=>dispatch({type: "ADD_TO_CART"}),
+    //     remove : ()=>dispatch({type: "REMOVE_FROM_CART"}),
+    //     clear : ()=>dispatch({type: "CLEAR_CART"}),
+
+    // })
+
+)(Cart)
+
+export default ConnectedCart

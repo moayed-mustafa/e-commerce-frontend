@@ -117,8 +117,6 @@ export default function ProductCard({ product }) {
                              <i  name="remove" className="fas fa-minus-square" ></i>
                         </button>
                     }
-
-
                     {checkInWishlist(product.id) ?
 
                         <button name= "remove" onClick={wishlistEvent}>

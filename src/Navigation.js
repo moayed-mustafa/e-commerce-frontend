@@ -4,11 +4,11 @@ import './Navigation.css'
 import { Button, Badge, Tooltip } from 'reactstrap'
 import { NavLink, useHistory} from 'react-router-dom'
 import userContext from './userContext'
-import {useSelector} from 'react-redux'
+import {useSelector, connect} from 'react-redux'
 
 
 
-export default function Navigation() {
+export  function Navigation() {
 
     let [categoriesOpen, setCategoriesOpen] = useState(false)
     let [chevron, setChevronOpen] = useState(false)
@@ -100,25 +100,28 @@ export default function Navigation() {
                                     setChevronOpen(false)
                                     history.push('/update-user')
                                 }}>
-                                    <i className="fas fa-cog" >  </i>
+                                    update user
+                                    {/* <i className="fas fa-cog" >  </i>
                                     <Tooltip placement="top" isOpen={cogOpen} autohide={false}
-                                    target="cog" toggle={toggleCog}>Update User</Tooltip>
+                                    target="cog" toggle={toggleCog}>Update User</Tooltip> */}
                                 </li>
                                 <li className="nav-item nav-drop-down" id="star" onClick={() =>
                                     {setChevronOpen(false)
                                     history.push("/wishlist")}
 
                                 }>
-                                    <i className="fas fa-star">
+                                    {/* <i className="fas fa-star"> */}
+                                    wishlist
                                        <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
-                                    </i>
-                                    <Tooltip placement="top" isOpen={starOpen} autohide={false}
-                                    target="star" toggle={toggleStar}>Wishlist</Tooltip>
+                                    {/* </i> */}
+                                    {/* <Tooltip placement="top" isOpen={starOpen} autohide={false}
+                                    target="star" toggle={toggleStar}>Wishlist</Tooltip> */}
                                 </li>
                                 <li className="nav-item nav-drop-down" id="logout" onClick={logout}>
-                                    <i className="fas fa-sign-out-alt"></i>
-                                    <Tooltip placement="top" isOpen={logoutOpen} autohide={false}
-                                    target="logout" toggle={togglelogOut}>Logout</Tooltip>
+                                    logout
+                                    {/* <i className="fas fa-sign-out-alt"></i>
+                                    <Tooltip placement="top" isOpen={logoutOpen} autohide={true}
+                                    target="logout" toggle={togglelogOut}>Logout</Tooltip> */}
                                     </li>
 
                             </ul>
@@ -174,3 +177,6 @@ export default function Navigation() {
         </div>
     )
 }
+
+const mapStateToProps  = state =>({cart:state.cart, wishlist:state.wishlist, ACTIVE_USER:state.ACTIVE_USER})
+  export default  connect(mapStateToProps)(Navigation)
