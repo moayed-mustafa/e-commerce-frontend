@@ -49,7 +49,7 @@ export default function Products() {
 
                 {
                     products.map(product => (
-                        <ProductCard product={product} />
+                        <ProductCard product={product} key={uuid()} />
                     ))
                 }
             </div> :

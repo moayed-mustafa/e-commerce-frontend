@@ -94,34 +94,34 @@ export default function ProductCard({ product }) {
 
     return (
         <div className="card-wrapper"  key={key}>
-                <div className="product-img-wrapper" key={uuid()}>
+                <div className="product-img-wrapper" >
                     <img className="product-img" src={product.image} alt="product-display"></img>
                 </div>
 
-                <div className="product-info" key={uuid()}>
-                    <div className="product-title" >
+                <div className="product-info" >
+                    <div className="product-title"  >
                         <h5>{product.title}</h5>
                     </div>
-                    <div className="product-descripition" key={uuid()}>
+                    <div className="product-descripition" >
                         <p>{product.description}</p>
                     </div>
-                    <div className='product-price-buy'key={uuid()} >
+                    <div className='product-price-buy' >
                     <b >{`Price: ${product.price}`}$</b>
 
-                    <button id={product.id} name="add" onClick={cartEvent}key={uuid()} >
+                    <button id={product.id} name="add" onClick={cartEvent} >
                         <i name="add" className="fas fa-cart-plus" ></i>
                     </button>
                     {checkInCart(product.id) &&
-                        <button id={product.id} name="remove" onClick={cartEvent} key={uuid()}>
+                        <button id={product.id} name="remove" onClick={cartEvent} >
                              <i  name="remove" className="fas fa-minus-square" ></i>
                         </button>
                     }
                     {checkInWishlist(product.id) ?
 
-                        <button name= "remove" onClick={wishlistEvent} key={uuid()}>
+                        <button name= "remove" onClick={wishlistEvent} >
                         <i name= "remove" className="fas fa-heart"></i>
                         </button> :
-                        <button name="add"  onClick={wishlistEvent} key={uuid()}>
+                        <button name="add"  onClick={wishlistEvent} >
                         <i  name="add" className="far fa-heart"></i>
                         </button>
 

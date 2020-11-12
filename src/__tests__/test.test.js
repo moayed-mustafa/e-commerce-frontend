@@ -7,6 +7,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from '../reducers/rootReducer'
 import '@testing-library/jest-dom/extend-expect'
+import UserContext from '../userContext'
 // import UserContext from '../userContext'
 
 
@@ -14,13 +15,16 @@ import '@testing-library/jest-dom/extend-expect'
 
 afterEach(cleanup)
 
-
+const current_user = {username: "test", _token:"1234"}
 
 function renderWithRedux(component, { initialState = { products: [], cart: [], wishlist: [] },
      store = createStore(reducer, initialState) } = {}) {
      return {
           ...render(
-               <Provider store={store}>{component}</Provider>
+               <UserContext.Provider value={current_user}>
+                    <Provider store={store}>{component}</Provider>
+
+               </UserContext.Provider>
           )
      }
 }
