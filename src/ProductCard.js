@@ -60,7 +60,6 @@ export default function ProductCard({ product }) {
         const message = action === "add" ? "Added To Wishlist" : "Removed From Wishlist"
         const backgroundColor = action === "add" ? "#FFB500" : "#F93800"
         const product_id = product.id
-        console.log(e.target.id, product.id, action, type, username, _token)
         const data = { _token, username, product_id, action }
         // call server
         try {
@@ -95,34 +94,34 @@ export default function ProductCard({ product }) {
 
     return (
         <div className="card-wrapper"  key={key}>
-                <div className="product-img-wrapper">
+                <div className="product-img-wrapper" key={uuid()}>
                     <img className="product-img" src={product.image} alt="product-display"></img>
                 </div>
 
-                <div className="product-info" >
+                <div className="product-info" key={uuid()}>
                     <div className="product-title" >
                         <h5>{product.title}</h5>
                     </div>
-                    <div className="product-descripition">
+                    <div className="product-descripition" key={uuid()}>
                         <p>{product.description}</p>
                     </div>
-                    <div className='product-price-buy' >
+                    <div className='product-price-buy'key={uuid()} >
                     <b >{`Price: ${product.price}`}$</b>
 
-                    <button id={product.id} name="add" onClick={cartEvent} >
+                    <button id={product.id} name="add" onClick={cartEvent}key={uuid()} >
                         <i name="add" className="fas fa-cart-plus" ></i>
                     </button>
                     {checkInCart(product.id) &&
-                        <button id={product.id} name="remove" onClick={cartEvent} >
+                        <button id={product.id} name="remove" onClick={cartEvent} key={uuid()}>
                              <i  name="remove" className="fas fa-minus-square" ></i>
                         </button>
                     }
                     {checkInWishlist(product.id) ?
 
-                        <button name= "remove" onClick={wishlistEvent}>
+                        <button name= "remove" onClick={wishlistEvent} key={uuid()}>
                         <i name= "remove" className="fas fa-heart"></i>
                         </button> :
-                        <button name="add"  onClick={wishlistEvent} >
+                        <button name="add"  onClick={wishlistEvent} key={uuid()}>
                         <i  name="add" className="far fa-heart"></i>
                         </button>
 

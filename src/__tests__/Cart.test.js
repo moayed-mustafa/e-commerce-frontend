@@ -3,8 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import configureStore from 'redux-mock-store'; // for components that has redux store
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+
 
 
 // Component to be tested

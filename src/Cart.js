@@ -45,7 +45,6 @@ export function Cart() {
     async function Purchase() {
         //  * Flash stuff
         try {
-            console.log('making an orde Eeey!')
             await ServerApi.order({_token, username})
 
             flashControl("Purchase Completed Successfully", "#FFB500")

@@ -10,7 +10,7 @@ import userContext from './userContext'
 export default function Signup() {
 
     const history = useHistory()
-    const { current_user, set_current_user } = useContext(userContext)
+    const {set_current_user } = useContext(userContext)
 
 
     let [flash, setFlash] = useState('')

@@ -1,7 +1,7 @@
 
 import React, {useState, useContext} from 'react'
 import './Navigation.css'
-import { Button, Badge, Tooltip } from 'reactstrap'
+import { Button, Badge} from 'reactstrap'
 import { NavLink, useHistory} from 'react-router-dom'
 import userContext from './userContext'
 import {useSelector, connect} from 'react-redux'
@@ -14,20 +14,6 @@ export  function Navigation() {
     let [chevron, setChevronOpen] = useState(false)
     const ACTIVE_USER = useContext(userContext)
     const { current_user, set_current_user } = ACTIVE_USER
-    //  update user tooltip
-    const [cogOpen, setCogOpen] = useState(false);
-    const toggleCog = () => setCogOpen(!cogOpen);
-
-    // wishlist tooltip
-    const [starOpen, setStarOpen] = useState(false);
-    const toggleStar = () => setStarOpen(!starOpen);
-
-    // wishlist tooltip
-    const [logoutOpen, setlogoutOpen] = useState(false);
-    const togglelogOut = () => setlogoutOpen(!logoutOpen);
-
-
-
 
 
     const history = useHistory()
@@ -101,27 +87,18 @@ export  function Navigation() {
                                     history.push('/update-user')
                                 }}>
                                     update user
-                                    {/* <i className="fas fa-cog" >  </i>
-                                    <Tooltip placement="top" isOpen={cogOpen} autohide={false}
-                                    target="cog" toggle={toggleCog}>Update User</Tooltip> */}
                                 </li>
                                 <li className="nav-item nav-drop-down" id="star" onClick={() =>
                                     {setChevronOpen(false)
                                     history.push("/wishlist")}
 
                                 }>
-                                    {/* <i className="fas fa-star"> */}
                                     wishlist
                                        <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
-                                    {/* </i> */}
-                                    {/* <Tooltip placement="top" isOpen={starOpen} autohide={false}
-                                    target="star" toggle={toggleStar}>Wishlist</Tooltip> */}
+
                                 </li>
                                 <li className="nav-item nav-drop-down" id="logout" onClick={logout}>
                                     logout
-                                    {/* <i className="fas fa-sign-out-alt"></i>
-                                    <Tooltip placement="top" isOpen={logoutOpen} autohide={true}
-                                    target="logout" toggle={togglelogOut}>Logout</Tooltip> */}
                                     </li>
 
                             </ul>

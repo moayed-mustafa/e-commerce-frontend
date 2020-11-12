@@ -1,13 +1,13 @@
 
 // This version uses connected component
 import React from 'react'
-import {render, fireEvent, cleanup} from '@testing-library/react'
+import {render, cleanup} from '@testing-library/react'
 import ConnectedCart from '../Cart'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from '../reducers/rootReducer'
 import '@testing-library/jest-dom/extend-expect'
-import UserContext from '../userContext'
+// import UserContext from '../userContext'
 
 
 

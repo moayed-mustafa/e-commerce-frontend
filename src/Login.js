@@ -12,7 +12,7 @@ export default function Login() {
 
     let [flash, setFlash] = useState('')
     let history = useHistory()
-    const { current_user, set_current_user } = useContext(userContext)
+    const { set_current_user } = useContext(userContext)
 
     const validate = values => {
 

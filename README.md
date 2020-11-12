@@ -1,35 +1,41 @@
-# E-commerce app
+# Shopper
 
- Looking to buy products from the comfort or your sofa? our E-commerce app will provide you with
-a veriety of different products that you can browse based on the categories you like, add products you like to a wishlist to buy in the future or fill your cart up at the moment.
-
- All you have to do to enjoy our servecies is to go to the site, sign up for a free acount, enter your address and start browsing.
+ - Shopper is an E-commerce app that makes it easy for people to buy products online.
+    the app allows users to browse available products, browse by catgories,
+    add something to theri wishlist to buy later or add it to cart and buy immediately.
+- This repo has the backend api for the project.
+- Live site: coming soon
 
 
  # User flow
- - the user can registe if not registered or login other
+ - users can registe if not registered or login to the system.
  - homepage will show the available products that the user can click on to view a product.
- - clicking to add to cart button will add the product to the user's cart.
- - on the cart page the user can click purchase button which will make a transaction.
- - clicking to add a product to wishlist will add the product to the user's wishlist.
- - on the wishlist page the user can click add to cart which will send the items to his cart and clear the wishlist
+ - users can add/remove  products to their cart.
+ - users can add/remove products from their wishlist.
+ - cart page will show all the products currently at the user's cart.
+ - orders page will show the order history of the user.
  # Api
   The data for this project come from :
   [Fake Product Api](https://fakestoreapi.com/)
 
-  Backend Api for this project is bulit using node and published via postman :
-  [E-commerce backend](https://documenter.getpostman.com/view/11551288/TVYF8dyX)
+
 
   # Technologies:
-   The E-commerce will use the following technologies:
-   - Node Js for building a backend server.
-   - Postgresql to build a database.
-   - React for the UI
-   - Jest for testing.
-   - Postman for prototyping and testing the backend.
+   The technologies used for building the frontend for this project are:
+   - React JS.
+   - React router.
+   - Redux
+   - Axios
+   - Jest.
 
-   # Schema
-   - Here you can take a look at the database schema design [database](https://dbdiagram.io/d)
+
+
+   # Clone this project:
+   - to clone this project and use it on your local machine, you first need to clone and run the
+   backend api built for consumption by this UI, you can find it here [backend API](https://github.com/moayed-mustafa/E-commerce-app).
+   - on your terminal, navigate to where this repo is cloned, then run npm install to install the dependencies.
+   - to start the app, first run the backend server, then on the directory where this repo is, run npm start.
+
 
 
    # Stratch Goals

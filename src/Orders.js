@@ -21,10 +21,9 @@ export default function Orders() {
 
         async function fetchOrders() {
             //  * WARNING: too much looping!
-            console.log("fetching")
+
             try {
                 const data = await ServerApi.orders({ _token, username })
-
                 let ordersRecord = [];
                 const ids = data.map(item => item.product_id)
                 for (let id of ids){
@@ -45,8 +44,6 @@ export default function Orders() {
                     }
                 }
                 setOrders(ordersRecord)
-
-
             } catch (e) {
                 console.log(e)
             }
@@ -61,17 +58,17 @@ export default function Orders() {
         <ul className='cart-ul' key={uuid()}>
             {
                 orders.map(product =>
-                    <div className="wishlist-product">
+                    <div className="wishlist-product" key={uuid()}>
                         <li className="cart-image">
                             <img src={product.image} alt={product.title}></img>
                         </li>
-                        <li className="cart-title">
+                        <li className="cart-title" key={uuid()}>
                            {product.quantity} X {product.title}
                         </li>
-                        <li className="cart-price">
+                        <li className="cart-price" key={uuid()}>
                             Price: {product.price * product.quantity }
                         </li>
-                        <li className="cart-price">
+                        <li className="cart-price" key={uuid()}>
                             Date: {product.order_date.slice(0,product.order_date.indexOf("T")) }
                         </li>
                         <hr></hr>
