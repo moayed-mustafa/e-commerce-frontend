@@ -44,7 +44,7 @@ export default function Orders() {
                 }
                 setOrders(ordersRecord)
             } catch (e) {
-                console.log(e)
+                // console.log(e)
             }
 
         }

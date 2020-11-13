@@ -80,7 +80,7 @@ export default function Products() {
             getProducts()
             getItemsFromWishlist()
         } catch (e) {
-            console.log(e)
+            // console.log(e)
             console.log('API not working')
         }
         return () => {

@@ -1,7 +1,7 @@
 
 
 import React, {useState, useContext} from 'react'
-import { useSelector, useDispatch, connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 import './index.css'
 import userContext from './userContext'
@@ -11,7 +11,7 @@ import ServerApi from './API/server'
 import {useHistory} from 'react-router-dom'
 
 
-export function Cart() {
+export default function Cart() {
     const cart = useSelector(st => st.cart)
 
     let total = cart.length ===1? cart[0].price: cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.quantity },0)
@@ -134,16 +134,4 @@ export function Cart() {
     )
 }
 
-// const mapStateToProps  = (state) =>({cart:state.cart})
-//   export default  connect(mapStateToProps)(Cart)
-const ConnectedCart = connect(state => ({ cart: state.cart })
-    // ,dispatch => ({
-    //     add : ()=>dispatch({type: "ADD_TO_CART"}),
-    //     remove : ()=>dispatch({type: "REMOVE_FROM_CART"}),
-    //     clear : ()=>dispatch({type: "CLEAR_CART"}),
 
-    // })
-
-)(Cart)
-
-export default ConnectedCart

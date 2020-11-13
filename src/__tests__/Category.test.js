@@ -3,9 +3,11 @@ import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
+import { Route, MemoryRouter } from "react-router-dom";
+
 
 import rootReducer from '../reducers/rootReducer';
-import Cart from "../Cart";
+import Category from "../Category";
 import UserContext from '../userContext'
 
 
@@ -13,8 +15,8 @@ import UserContext from '../userContext'
 let store = createStore(rootReducer);
 
 let current_user= {
-    username: "carter", _token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcnRlciIsImlhdCI6MTYwNTMwMjY3Nn0.MsDqmb1zxzzHTsI38EwdYJoOIWIMcJGmN1XL0Tm2Trw"
+    username: "carter", _token:"123"
+
 }
 
 function checkUser(user) {
@@ -27,14 +29,18 @@ function checkUser(user) {
 
 }
 
-describe('<Cart />', () => {
+describe('<Category/>', () => {
 
     it('passes smoke test', function() {
         render((
-            <UserContext.Provider value={{current_user, set_current_user:checkUser}}>
+            <UserContext.Provider value={{ current_user, set_current_user: checkUser }}>
+                <MemoryRouter>
                 <Provider store={store}>
-                    <Cart />
+                    <Route>
+                        <Category/>
+                    </Route>
                 </Provider>
+                </MemoryRouter>
 
             </UserContext.Provider>
         ));
@@ -43,9 +49,13 @@ describe('<Cart />', () => {
     it('passes snapshot test', function() {
         const { asFragment } = render((
             <UserContext.Provider value={{current_user, set_current_user:checkUser}}>
+                 <MemoryRouter>
                 <Provider store={store}>
-                    <Cart />
+                    <Route>
+                        <Category/>
+                    </Route>
                 </Provider>
+                </MemoryRouter>
             </UserContext.Provider>
         ));
         expect( asFragment() ).toMatchSnapshot();

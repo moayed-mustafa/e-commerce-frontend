@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 
 import rootReducer from '../reducers/rootReducer';
-import Cart from "../Cart";
+import Signup from "../Signup";
 import UserContext from '../userContext'
 
 
@@ -13,8 +13,8 @@ import UserContext from '../userContext'
 let store = createStore(rootReducer);
 
 let current_user= {
-    username: "carter", _token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcnRlciIsImlhdCI6MTYwNTMwMjY3Nn0.MsDqmb1zxzzHTsI38EwdYJoOIWIMcJGmN1XL0Tm2Trw"
+    username: "carter", _token:"123"
+
 }
 
 function checkUser(user) {
@@ -27,13 +27,13 @@ function checkUser(user) {
 
 }
 
-describe('<Cart />', () => {
+describe('<Signup />', () => {
 
     it('passes smoke test', function() {
         render((
             <UserContext.Provider value={{current_user, set_current_user:checkUser}}>
                 <Provider store={store}>
-                    <Cart />
+                    <Signup />
                 </Provider>
 
             </UserContext.Provider>
@@ -44,7 +44,7 @@ describe('<Cart />', () => {
         const { asFragment } = render((
             <UserContext.Provider value={{current_user, set_current_user:checkUser}}>
                 <Provider store={store}>
-                    <Cart />
+                    <Signup />
                 </Provider>
             </UserContext.Provider>
         ));
