@@ -13,7 +13,8 @@ import {useHistory} from 'react-router-dom'
 
 export function Cart() {
     const cart = useSelector(st => st.cart)
-    let total = Math.ceil(cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.count },0))
+
+    let total = cart.length ===1? cart[0].price: cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.quantity },0)
     const [flash, setFlash] = useState({
         condition: false,
         message: "",
@@ -24,6 +25,7 @@ export function Cart() {
 
     const dispatch = useDispatch()
     const { _token, username } = useContext(userContext).current_user
+
 
     function flashControl(message, backgroundColor) {
         setFlash(data =>data = {
@@ -57,13 +59,9 @@ export function Cart() {
                 history.push('/')
 
             }, 1500)
-
-
         } catch (e) {
             flashControl("Something went Wrong","#F93800" )
         }
-
-
     }
 
     async function cartEvent(e) {
@@ -94,7 +92,7 @@ export function Cart() {
                 <ul className='cart-ul' key={uuid()}>
                     {
                         cart.map(product =>
-                            <div className="cart-product">
+                            <div className="cart-product" key={uuid()}>
                                 <li className="cart-image">
                                     <img src={product.image} alt={product.title}></img>
                                 </li>

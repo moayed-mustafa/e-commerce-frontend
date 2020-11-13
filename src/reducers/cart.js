@@ -3,6 +3,10 @@ const initialState = []
 
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
+
+        case "FILL_CART":
+
+            return action.cart
         case "ADD_TO_CART":
             const product = state.find(product=> product.id === action.product.id)
             if (product === undefined) {

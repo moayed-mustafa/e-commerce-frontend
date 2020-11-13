@@ -13,13 +13,24 @@ export default class ServerApi{
 
     static async cartAction(data) {
         const { product_id, username, action, _token } = data;
-        await axios.post(`${BASE_URL}/carts/${username}/${action}`, { product_id, _token })
+         await axios.post(`${BASE_URL}/carts/${username}/${action}`, { product_id, _token })
 
+    }
+
+    static async getItemsFromCart(data) {
+        const { username,_token } = data;
+        const result = await axios.post(`${BASE_URL}/carts/${username}/`, { _token })
+        return result.data
     }
     static async wishlistAction(data) {
         const { product_id, username, action, _token } = data;
         await axios.post(`${BASE_URL}/wishlist/${username}/${action}`, { product_id, _token })
 
+    }
+    static async getItemsFromWishlist(data) {
+        const { username,_token } = data;
+        const result = await axios.post(`${BASE_URL}/wishlist/${username}/`, { _token })
+        return result.data
     }
 
     static async order(data) {

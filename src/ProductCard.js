@@ -6,7 +6,6 @@ import ServerApi from './API/server'
 import { useSelector, useDispatch } from 'react-redux'
 import { Alert } from 'reactstrap'
 import userContext from './userContext'
-import { v4 as uuid } from 'uuid';
 
 
 export default function ProductCard({ product }) {
@@ -41,6 +40,7 @@ export default function ProductCard({ product }) {
         const backgroundColor = action === "add" ? "#FFB500" : "#F93800"
 
         const data = { _token, username, product_id, action }
+
 
         try {
             await ServerApi.cartAction( data)
@@ -92,35 +92,35 @@ export default function ProductCard({ product }) {
 
 
     return (
-        <div className="card-wrapper"  key={uuid()}>
-                <div className="product-img-wrapper" key={uuid()}>
+        <div className="card-wrapper"  >
+                <div className="product-img-wrapper" >
                     <img className="product-img" src={product.image} alt="product-display"></img>
                 </div>
 
-                <div className="product-info" key={uuid()}>
-                    <div className="product-title" key={uuid()} >
+                <div className="product-info" >
+                    <div className="product-title"  >
                         <h5>{product.title}</h5>
                     </div>
-                    <div className="product-descripition" key={uuid()}>
+                    <div className="product-descripition" >
                         <p>{product.description}</p>
                     </div>
-                    <div className='product-price-buy' key={uuid()}>
+                    <div className='product-price-buy' >
                     <b >{`Price: ${product.price}`}$</b>
 
-                    <button id={product.id} name="add" onClick={cartEvent} >
+                    <button id={product.id} name="add" onClick={cartEvent}  >
                         <i name="add" className="fas fa-cart-plus" ></i>
                     </button>
                     {checkInCart(product.id) &&
-                        <button id={product.id} name="remove" onClick={cartEvent} >
+                        <button id={product.id} name="remove" onClick={cartEvent}  >
                              <i  name="remove" className="fas fa-minus-square" ></i>
                         </button>
                     }
                     {checkInWishlist(product.id) ?
 
-                        <button name= "remove" onClick={wishlistEvent} >
+                        <button name= "remove" onClick={wishlistEvent}  >
                         <i name= "remove" className="fas fa-heart"></i>
                         </button> :
-                        <button name="add"  onClick={wishlistEvent} >
+                        <button name="add"  onClick={wishlistEvent}  >
                         <i  name="add" className="far fa-heart"></i>
                         </button>
 

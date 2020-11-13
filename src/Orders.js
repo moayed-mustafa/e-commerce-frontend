@@ -39,7 +39,6 @@ export default function Orders() {
                             // remove the item you destructured earlier so only one record with the same id remains on data
                             data.splice(data.indexOf(order),1)
 
-
                             }
                     }
                 }
@@ -50,6 +49,9 @@ export default function Orders() {
 
         }
         fetchOrders()
+        return () => {
+            // clean up
+        }
 
     }, [])
 

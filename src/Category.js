@@ -13,7 +13,6 @@ export default function Category() {
     const { pathname } = useLocation()
     const [fakeLoad, setFakeLoad] = useState(false)
     const ref = useRef(fakeLoad)
-    const key = uuid()
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -45,10 +44,10 @@ export default function Category() {
 
     return (
         fakeLoad?
-        <div className="products-container" key={key}>
+        <div className="products-container" >
                 {
                     category.map(product => (
-                        <ProductCard product={product} />
+                        <ProductCard product={product} key={uuid()}/>
                     ))
                 }
             </div> :
@@ -57,7 +56,8 @@ export default function Category() {
             color="#FFB500"
             height={250}
             width={250}
-            style={{"marginTop":"300"}}
+                style={{ "marginTop": "300" }}
+                key={uuid()}
         />
 
     )
