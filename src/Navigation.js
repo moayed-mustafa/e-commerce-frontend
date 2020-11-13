@@ -38,7 +38,7 @@ export  function Navigation() {
 
         return (
         <ul className="main-nav">
-                <li className="nav-item nav-brand m-1"    key={key} >
+                <li className="nav-item nav-brand m-1"    key={uuid()} >
                 <NavLink to="/">
                         <Button className ="btn-brand" >Shopper</Button>
                     </NavLink>
@@ -46,28 +46,28 @@ export  function Navigation() {
                 </li>
 
                 <span className="li-span">
-                <li className="nav-item m-1 category"   key={key} >
+                <li className="nav-item m-1 category"   key={uuid()} >
                     <Button className="li-btn"
                         onClick={()=> setCategoriesOpen(!categoriesOpen)}>Categories</Button>
 
                         {categoriesOpen ?
                             <ul className="drop-down">
 
-                                <li   key={key} className="nav-item nav-drop-down " id="men-clothing"
+                                <li   key={uuid()} className="nav-item nav-drop-down " id="men-clothing"
                                     onClick={clickHandler}>Men Clothing
                                     </li>
 
-                                    <li key={key}  className="nav-item nav-drop-down"
+                                    <li key={uuid()}  className="nav-item nav-drop-down"
                                         id="women-clothing" onClick={clickHandler}>Women Clothing
                                     </li>
 
-                                <li key={key} className="nav-item nav-drop-down" id="jewelery" onClick={clickHandler}>Jewelery</li>
-                                <li key={key} className="nav-item nav-drop-down" id="electronics" onClick={clickHandler}>Electronics</li>
+                                <li key={uuid()} className="nav-item nav-drop-down" id="jewelery" onClick={clickHandler}>Jewelery</li>
+                                <li key={uuid()} className="nav-item nav-drop-down" id="electronics" onClick={clickHandler}>Electronics</li>
                             </ul>
                             : null}
                     </li>
 
-                    <li  key={key} className="nav-item m-1">
+                    <li  key={uuid()} className="nav-item m-1">
                         <Button className="li-btn"
                             onClick={() => setChevronOpen(!chevron)}>
                             <i className="fas fa-chevron-down"></i>
@@ -75,21 +75,21 @@ export  function Navigation() {
 
                         {chevron ?
                             <ul className="drop-down">
-                                <li key={key}   style={{ display: "inline" }} className="nav-item nav-drop-down" onClick={() => {
+                                <li key={uuid()}   style={{ display: "inline" }} className="nav-item nav-drop-down" onClick={() => {
                                     history.push('/orders')
                                     setChevronOpen(!chevron)
                                 }}>
                                 orders
                                     </li>
 
-                                <li key={key} className="nav-item nav-drop-down" id="cog" onClick={() => {
+                                <li key={uuid()} className="nav-item nav-drop-down" id="cog" onClick={() => {
 
                                     setChevronOpen(false)
                                     history.push('/update-user')
                                 }}>
                                     update user
                                 </li>
-                                <li key={key} className="nav-item nav-drop-down" id="star" onClick={() =>
+                                <li key={uuid()} className="nav-item nav-drop-down" id="star" onClick={() =>
                                     {setChevronOpen(false)
                                     history.push("/wishlist")}
 
@@ -98,14 +98,14 @@ export  function Navigation() {
                                        <Badge className="badge" style={{ marginLeft: 5, padding:5 }} >{wishlist.length}</Badge>
 
                                 </li>
-                                <li key={key} className="nav-item nav-drop-down" id="logout" onClick={logout}>
+                                <li key={uuid()} className="nav-item nav-drop-down" id="logout" onClick={logout}>
                                     logout
                                     </li>
 
                             </ul>
                             : null}
                 </li>
-                    <li key={key} className="nav-item m-1">
+                    <li key={uuid()} className="nav-item m-1">
                         <Button className="li-btn" onClick={() =>
                             history.push("/cart",
 

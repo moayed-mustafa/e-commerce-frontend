@@ -32,7 +32,6 @@ export default function ProductCard({ product }) {
 
 
     const { _token, username } = useContext(userContext).current_user
-    const key = uuid()
 
     async function cartEvent(e) {
         const product_id = e.target.parentElement.id || e.target.id
@@ -93,19 +92,19 @@ export default function ProductCard({ product }) {
 
 
     return (
-        <div className="card-wrapper"  key={key}>
-                <div className="product-img-wrapper" >
+        <div className="card-wrapper"  key={uuid()}>
+                <div className="product-img-wrapper" key={uuid()}>
                     <img className="product-img" src={product.image} alt="product-display"></img>
                 </div>
 
-                <div className="product-info" >
-                    <div className="product-title"  >
+                <div className="product-info" key={uuid()}>
+                    <div className="product-title" key={uuid()} >
                         <h5>{product.title}</h5>
                     </div>
-                    <div className="product-descripition" >
+                    <div className="product-descripition" key={uuid()}>
                         <p>{product.description}</p>
                     </div>
-                    <div className='product-price-buy' >
+                    <div className='product-price-buy' key={uuid()}>
                     <b >{`Price: ${product.price}`}$</b>
 
                     <button id={product.id} name="add" onClick={cartEvent} >
