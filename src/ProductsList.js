@@ -26,7 +26,7 @@ export default function Products() {
     useEffect(() => {
         try {
 
-            console.log('fetching')
+
             //  request to productsApi
             async function getProducts() {
                 const response = await fetchProducts()
@@ -72,7 +72,7 @@ export default function Products() {
 
 
                 dispatch({
-                    type: "FILL_Wishlist",
+                    type: "FILL_WISHLIST",
                     wishlist:final
                 })
             }

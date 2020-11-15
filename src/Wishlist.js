@@ -10,10 +10,9 @@ import { v4 as uuid } from 'uuid';
 export default function Wishlist() {
 
     const wishlist = useSelector(st => st.wishlist)
-    // const [isEmpty, setIsEmpty] = useState(wishlist.length === 0)
     const dispatch = useDispatch()
     const { _token, username } = useContext(userContext).current_user
-    const [flash] = useState({
+    const [flash, setFlash] = useState({
         condition: false,
         message: "",
         backgroundColor: ""
@@ -32,21 +31,55 @@ export default function Wishlist() {
                     type:"ADD_TO_CART",
                     product
                 })
+                //  make a flash message
+                setFlash({
+                    condition: true,
+                    message: "Item added to cart",
+                    backgroundColor: "#FFB500"
+                })
+                // remove the flash
+                setTimeout(() => {
+                    setFlash({
+                        condition: false,
+                        message: "",
+                        backgroundColor: ""
+                    })
+                    //  remove from wishlist
+                    dispatch({
+                        type:"REMOVE_FORM_WISHLIST",
+                        product
+                    })
+                }, 2000)
             }
-            await ServerApi.wishlistAction({ _token, username, product_id, action:"remove" })
+            else {
+                await ServerApi.wishlistAction({ _token, username, product_id, action:"remove"})
+                dispatch({
+                    type:"REMOVE_FORM_WISHLIST",
+                    product
+                })
+                //  make a flash message
+                setFlash({
+                    condition: true,
+                    message: "Item rmoved from wishlist",
+                    backgroundColor: "#F93800"
+                })
+                // remove the flash
+                setTimeout(() => {
+                    setFlash({
+                        condition: false,
+                        message: "",
+                        backgroundColor: ""
+                    })
+                }, 2000)
 
-
-            dispatch({
-                type:"REMOVE_FORM_WISHLIST",
-                product
-            })
+            }
         } catch (e) {
             console.log(e)
         }
     }
 
 
-    return (wishlist.length === 0?
+    return (wishlist.length === 0 && flash.condition === false?
         <h3 className="empty-cart"> Make a wish</h3> :
             <div className='cart-div' key={uuid()}>
             <ul className='cart-ul' key={uuid()}>
@@ -64,15 +97,16 @@ export default function Wishlist() {
                             </li>
                             <span className="wishlist-btns" key={uuid()}>
                                 <button id={product.id} name="add"  onClick={wishlistEvent} >
-                                    <i name="add" className="fas fa-plus-square" ></i>
+                                    <i name="add" className="fas fa-plus-square" > Cart</i>
                                 </button>
                                 <button id={product.id} name="remove"  onClick={wishlistEvent} >
-                                    <i name="remove" className="fas fa-minus-square" ></i>
+                                    <i name="remove" className="fas fa-minus-square" > Wishlist</i>
                                 </button>
 
 
                             </span>
                             <hr></hr>
+
                         </div>
                     )
                 }

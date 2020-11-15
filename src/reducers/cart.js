@@ -11,25 +11,27 @@ export default function cartReducer(state = initialState, action) {
             const product = state.find(product=> product.id === action.product.id)
             if (product === undefined) {
                 // first time shop
-                action.product.count = 1;
+                action.product.quantity = 1;
                 return [...state, action.product]
             } else {
-                action.product.count += 1;
+                action.product.quantity += 1;
                 let newState = state.filter(p => p.id !== product.id)
                 newState.push(action.product)
-                console.log(newState)
                 return newState
 
             }
 
         case "REMOVE_FORM_CART":
-            if (action.product.count > 1) {
-                action.product.count -= 1;
+            if (action.product.quantity > 1) {
+                action.product.quantity -= 1;
                 let newState = state.filter(p => p.id !== action.product.id)
                 newState.push(action.product)
                 return newState
             }
-            return state.filter(p => p.id !== action.product.id)
+            else {
+                return state.filter(p => p.id !== action.product.id)
+
+            }
 
         case "CLEAR_CART":
             return []

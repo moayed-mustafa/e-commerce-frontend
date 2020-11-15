@@ -14,7 +14,7 @@ import {useHistory} from 'react-router-dom'
 export default function Cart() {
     const cart = useSelector(st => st.cart)
 
-    let total = cart.length ===1? cart[0].price: cart.reduce((acc, currVal) => { return (acc  + currVal.price) * currVal.quantity },0)
+    let total = cart.length ===1  && cart[0].quantity === 1? cart[0].price: cart.reduce((acc, currVal) => { return acc  +(currVal.price * currVal.quantity)  },0)
     const [flash, setFlash] = useState({
         condition: false,
         message: "",
@@ -97,7 +97,7 @@ export default function Cart() {
                                     <img src={product.image} alt={product.title}></img>
                                 </li>
                                 <li className="cart-title">
-                                    {`${product.count} X ${product.title}`}
+                                    {`${product.quantity} X ${product.title}`}
                                 </li>
                                 <li className="cart-price">
                                     Price: {product.price }
@@ -118,7 +118,7 @@ export default function Cart() {
                 </ul>
                  <span className="total-span">
                     <button onClick={Purchase}>Complete Purchase</button>
-                    <h5>Total: ${total}</h5>
+                    <h5>Total: ${total.toFixed(2)}</h5>
                 </span>
                     <div>
                         {flash.condition && <Alert style={{ backgroundColor: flash.backgroundColor }}
