@@ -12,6 +12,7 @@ import UserContext from '../userContext'
 
 
 
+
 let store = createStore(rootReducer);
 
 let current_user= {
@@ -37,7 +38,7 @@ describe('<Homepage/>', () => {
                 <MemoryRouter>
                 <Provider store={store}>
                     <Route>
-                        <Homepage/>
+                            <Homepage />
                     </Route>
                 </Provider>
                 </MemoryRouter>
@@ -46,13 +47,14 @@ describe('<Homepage/>', () => {
         ));
     });
 
-    it('passes snapshot test', function() {
+    it('passes snapshot test', async function() {
         const { asFragment } = render((
             <UserContext.Provider value={{current_user, set_current_user:checkUser}}>
                  <MemoryRouter>
                 <Provider store={store}>
                     <Route>
-                        <Homepage/>
+                            <Homepage />
+
                     </Route>
                 </Provider>
                 </MemoryRouter>

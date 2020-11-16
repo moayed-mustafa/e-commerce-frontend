@@ -34,15 +34,14 @@ export default function Cart() {
             backgroundColor
 
             })
-            setTimeout(() => {
-                setFlash(data =>data = {
-                    condition: false,
-                    message: "",
-                    backgroundColor: ""
 
-                    })
-            }, 3000)
     }
+
+    // fixing the one decimal place item
+     const countDecimals =  (num) => {
+    if(Math.floor(num) === num) return 0;
+    return num.toString().split(".")[1].length || 0;
+}
 
     async function Purchase() {
         //  * Flash stuff
@@ -118,7 +117,7 @@ export default function Cart() {
                 </ul>
                  <span className="total-span">
                     <button onClick={Purchase}>Complete Purchase</button>
-                    <h5>Total: ${total.toFixed(2)}</h5>
+                    <h5>{countDecimals(total) === 1? `Total: $${total}` : `Total: $${total.toFixed(2) }`}</h5>
                 </span>
                     <div>
                         {flash.condition && <Alert style={{ backgroundColor: flash.backgroundColor }}

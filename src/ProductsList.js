@@ -26,38 +26,48 @@ export default function Products() {
     useEffect(() => {
         try {
 
-
             //  request to productsApi
             async function getProducts() {
-                const response = await fetchProducts()
-                dispatch({
-                    type: "CHANGE_PRODUCTS",
-                    products: response.data
-                })
-                setDataFetched(true)
+                try {
+                    const response = await fetchProducts()
+                    dispatch({
+                        type: "CHANGE_PRODUCTS",
+                        products: response.data
+                    })
+                    setDataFetched(true)
+
+                } catch (e) {
+                    // console.log('error occoured')
+                }
             }
             async function getItemsFromCart() {
-                let newCart = await ServerApi.getItemsFromCart({ _token, username })
-                let ids = newCart.map(item => [item.product_id, item.quantity])
+                try {
+                    let newCart = await ServerApi.getItemsFromCart({ _token, username })
+                    let ids = newCart.map(item => [item.product_id, item.quantity])
 
-                let final=[];
-                for (let pair of ids) {
-                    for (let product of products) {
-                        if (product.id === pair[0]) {
-                            let cartProduct = {...product, quantity: pair[1]}
-                            final.push(cartProduct)
+                    let final=[];
+                    for (let pair of ids) {
+                        for (let product of products) {
+                            if (product.id === pair[0]) {
+                                let cartProduct = {...product, quantity: pair[1]}
+                                final.push(cartProduct)
+                            }
                         }
                     }
+
+                    dispatch({
+                        type: "FILL_CART",
+                        cart:final
+                    })
+                } catch (e) {
+                    // console.log("error")
                 }
 
-                dispatch({
-                    type: "FILL_CART",
-                    cart:final
-                })
             }
 
             async function getItemsFromWishlist() {
-                let newWishlist = await ServerApi.getItemsFromWishlist({ _token, username })
+                try {
+                    let newWishlist = await ServerApi.getItemsFromWishlist({ _token, username })
 
                 let ids = newWishlist.map(item => item.product_id)
                 let final=[];
@@ -69,12 +79,14 @@ export default function Products() {
                     }
                 }
 
-
-
                 dispatch({
                     type: "FILL_WISHLIST",
                     wishlist:final
                 })
+                } catch (e) {
+                    // console.log("error")
+                }
+
             }
             getItemsFromCart()
             getProducts()
@@ -96,7 +108,6 @@ export default function Products() {
     return (
         dataFetched?
         <div className="products-container" key={uuid()} >
-
                 {
                     products.map(product => (
                         <ProductCard product={product} key={uuid()} />
