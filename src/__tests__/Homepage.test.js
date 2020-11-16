@@ -16,7 +16,7 @@ import UserContext from '../userContext'
 let store = createStore(rootReducer);
 
 let current_user= {
-    username: "carter", _token:"123"
+    username: "carter", _token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcnRlciIsImlhdCI6MTYwNTUzMTE1MH0.Ubq4MkrWWL4a3Aw9vIuBIh0ZEv6tsGfpTH_hWAdjEbE"
 
 }
 

@@ -37,7 +37,7 @@ export default function Products() {
                     setDataFetched(true)
 
                 } catch (e) {
-                    // console.log('error occoured')
+                    console.log(e)
                 }
             }
             async function getItemsFromCart() {
@@ -60,7 +60,7 @@ export default function Products() {
                         cart:final
                     })
                 } catch (e) {
-                    // console.log("error")
+                    console.log(e)
                 }
 
             }
@@ -84,7 +84,7 @@ export default function Products() {
                     wishlist:final
                 })
                 } catch (e) {
-                    // console.log("error")
+                    console.log(e)
                 }
 
             }
