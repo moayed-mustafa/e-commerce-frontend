@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Cart /> passes snapshot test 1`] = `
+<DocumentFragment>
+  <h3
+    class="empty-cart"
+  >
+     Your cart is empty 
+  </h3>
+</DocumentFragment>
+`;
