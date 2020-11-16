@@ -6,8 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import rootReducer from './reducers/rootReducer'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -24,10 +23,7 @@ const persistConfig = {
 //  set up the redux thunk and the redux-persist stuff
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-// const store = createStore(persistedReducer,
-//   compose(applyMiddleware(thunk),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-// )
+
 const store = createStore(persistedReducer);
 const persistor = persistStore(store);
 
