@@ -14,7 +14,9 @@ import {useHistory} from 'react-router-dom'
 export default function Cart() {
     const cart = useSelector(st => st.cart)
 
-    let total = cart.length ===1  && cart[0].quantity === 1? cart[0].price: cart.reduce((acc, currVal) => { return acc  +(currVal.price * currVal.quantity)  },0)
+
+    let total = cart.length === 1 && cart[0].quantity === 1 ? cart[0].price :
+        cart.reduce((acc, currVal) => { return acc + (parseFloat(currVal.price.slice(5)) * currVal.quantity) }, 0)
     const [flash, setFlash] = useState({
         condition: false,
         message: "",
@@ -38,10 +40,10 @@ export default function Cart() {
     }
 
     // fixing the one decimal place item
-     const countDecimals =  (num) => {
-    if(Math.floor(num) === num) return 0;
-    return num.toString().split(".")[1].length || 0;
-}
+//      const countDecimals =  (num) => {
+//     if(Math.floor(num) === num) return 0;
+//     return num.toString().split(".")[1].length || 0;
+// }
 
     async function Purchase() {
         //  * Flash stuff
@@ -117,7 +119,7 @@ export default function Cart() {
                 </ul>
                  <span className="total-span">
                     <button onClick={Purchase}>Complete Purchase</button>
-                    <h5>{countDecimals(total) === 1? `Total: $${total}` : `Total: $${total.toFixed(2) }`}</h5>
+                    <h5> {typeof total === "string"? total : `Total: ${total} .د.إ`}</h5>
                 </span>
                     <div>
                         {flash.condition && <Alert style={{ backgroundColor: flash.backgroundColor }}

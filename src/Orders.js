@@ -68,7 +68,7 @@ export default function Orders() {
                            {product.quantity} X {product.title}
                         </li>
                         <li className="cart-price" key={uuid()}>
-                            Price: {product.price * product.quantity }
+                            {`Price ${parseFloat(product.price.slice(5)) * product.quantity} د.إ. `}
                         </li>
                         <li className="cart-price" key={uuid()}>
                             Date: {product.order_date.slice(0,product.order_date.indexOf("T")) }

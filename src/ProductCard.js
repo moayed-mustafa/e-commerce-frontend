@@ -105,7 +105,7 @@ export default function ProductCard({ product }) {
                         <p>{product.description}</p>
                     </div>
                     <div className='product-price-buy' >
-                    <b >{`Price: ${product.price}`}$</b>
+                    <b >{`Price: ${product.price}`}</b>
 
                     <button id={product.id} name="add" onClick={cartEvent}  >
                         <i name="add" className="fas fa-cart-plus" ></i>

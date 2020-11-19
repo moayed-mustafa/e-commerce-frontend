@@ -95,6 +95,7 @@ hr{
   border-radius: 15px;
   background-color: #283350;
 }
+
 .product-img-wrapper{
   width:50%;
   height:100%;
@@ -161,6 +162,23 @@ hr{
   margin-top: 0.25rem;
   color:#283350 !important;
   z-index: -1;
+}
+
+@media all and (max-width: 375){
+  .card-wrapper{
+    /* margin: 50px auto; */
+    display: block;
+    border-radius: 15px;
+    background-color: #283350;
+  }
+  .product-img-wrapper{
+    width:50%;
+    height:100%;
+  }
+  /* .product-img{
+    width:12em;
+    border-radius: 7px ;
+  } */
 }
 /* ============================================== */
 
