@@ -14,9 +14,8 @@ import {useHistory} from 'react-router-dom'
 export default function Cart() {
     const cart = useSelector(st => st.cart)
 
-
     let total = cart.length === 1 && cart[0].quantity === 1 ? cart[0].price :
-        cart.reduce((acc, currVal) => { return acc + (parseFloat(currVal.price.slice(5)) * currVal.quantity) }, 0)
+        cart.reduce((acc, currVal) => { return acc + (currVal.price) * currVal.quantity }, 0)
     const [flash, setFlash] = useState({
         condition: false,
         message: "",
@@ -39,11 +38,7 @@ export default function Cart() {
 
     }
 
-    // fixing the one decimal place item
-//      const countDecimals =  (num) => {
-//     if(Math.floor(num) === num) return 0;
-//     return num.toString().split(".")[1].length || 0;
-// }
+
 
     async function Purchase() {
         //  * Flash stuff
@@ -101,7 +96,7 @@ export default function Cart() {
                                     {`${product.quantity} X ${product.title}`}
                                 </li>
                                 <li className="cart-price">
-                                    Price: {product.price }
+                                    Price: {new Intl.NumberFormat('En-us', { style: 'currency', currency: 'AED' }).format(product.price)}
                                 </li>
                                 <span className="cart-btns">
                                     <button id={product.id} name="add"  onClick={cartEvent} >
@@ -116,10 +111,12 @@ export default function Cart() {
                             </div>
                         )
                     }
+
+
                 </ul>
                  <span className="total-span">
                     <button onClick={Purchase}>Complete Purchase</button>
-                    <h5> {typeof total === "string"? total : `Total: ${total} .د.إ`}</h5>
+                    <h5> {new Intl.NumberFormat('En-us', { style: 'currency', currency: 'AED' }).format(total)}</h5>
                 </span>
                     <div>
                         {flash.condition && <Alert style={{ backgroundColor: flash.backgroundColor }}

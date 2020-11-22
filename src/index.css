@@ -164,21 +164,104 @@ hr{
   z-index: -1;
 }
 
-@media all and (max-width: 375){
+@media only screen and (max-width: 768px){
   .card-wrapper{
-    /* margin: 50px auto; */
-    display: block;
+    /* height:25%; */
+    width:100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     border-radius: 15px;
     background-color: #283350;
+
   }
   .product-img-wrapper{
     width:50%;
-    height:100%;
+    height:50%;
   }
-  /* .product-img{
-    width:12em;
+  .product-img{
+    width:8em;
     border-radius: 7px ;
-  } */
+  }
+  .product-title{
+    color:#F93800;
+    background-color:#FFB500;
+    padding:0.5rem;
+    font-weight:bold;
+    border-radius:7px;
+    width: 100%;
+
+  }
+  .product-descripition{
+    color:#ffffff;
+    background-color:#F93800;
+    padding:0.5rem;
+    border: solid 1px white;
+    font-display: block;
+    border-radius:7px;
+    width:100%;
+
+  }
+
+  .cart-ul{
+    margin: 1rem;
+    width:100%;
+  }
+  .cart-ul> .cart-product{
+    display: block;
+    border: solid 2px #000000;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 0.5rem;
+    width: 70%;
+    font-weight: bold;
+    background-color: #FFB500;
+    color: #FFFFFF;
+  }
+  .cart-ul> .wishlist-product{
+    display: block;
+    border: solid 2px #000000;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 0.5rem;
+    width: 80%;
+    font-weight: bold;
+    background-color: #283350;
+    color: #FFFFFF
+  }
+
+  .cart-product > .cart-image {
+    width: 100%;
+  }
+  .cart-product > .cart-image > img {
+    width: 50%;
+  }
+  .wishlist-product > .cart-image {
+    width: 100%;
+  }
+  .wishlist-product > .cart-image > img {
+    width: 50%;
+  }
+  .total-span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+
+  }
+  .total-span > button{
+
+    background-color: #F93800;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 0.5rem;
+
+
+
+  }
+
 }
 /* ============================================== */
 

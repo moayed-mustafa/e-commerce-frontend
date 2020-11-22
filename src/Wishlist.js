@@ -93,7 +93,7 @@ export default function Wishlist() {
                                 {product.title}
                             </li>
                             <li className="cart-price" key={uuid()}>
-                                Price: {product.price }
+                                Price: {new Intl.NumberFormat('En-us', { style: 'currency', currency: 'AED' }).format(product.price)}
                             </li>
                             <span className="wishlist-btns" key={uuid()}>
                                 <button id={product.id} name="add"  onClick={wishlistEvent} >
