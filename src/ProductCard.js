@@ -11,12 +11,9 @@ import userContext from './userContext'
 export default function ProductCard({ product }) {
 
     const [flash, setFlash] = useState({condition:false, message:"", backgroundColor: ""})
-
     const dispatch = useDispatch()
-
     const cart = useSelector(st => st.cart)
     const wishlist = useSelector(st => st.wishlist)
-
 
     function checkInCart(id) {
         if(cart.length ===0) return false
@@ -28,7 +25,6 @@ export default function ProductCard({ product }) {
         return wishlist.some(item => item.id === id);
 
     }
-
 
     const { _token, username } = useContext(userContext).current_user
 
@@ -60,7 +56,6 @@ export default function ProductCard({ product }) {
         const backgroundColor = action === "add" ? "#FFB500" : "#F93800"
         const product_id = product.id
         const data = { _token, username, product_id, action }
-        // call server
         try {
             await ServerApi.wishlistAction(data)
             flashControl(message,backgroundColor)

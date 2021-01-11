@@ -20,7 +20,7 @@ const persistConfig = {
   storage,
 }
 
-//  set up the redux thunk and the redux-persist stuff
+//   redux thunk and the redux-persist
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 

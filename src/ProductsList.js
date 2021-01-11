@@ -13,20 +13,15 @@ import userContext from './userContext'
 
 
 
-
-
 export default function Products() {
-
 
     const products = useSelector(st => st.products)
     const [dataFetched, setDataFetched] = useState(products.length > 0 ? true : false)
     const dispatch = useDispatch()
     const { _token, username } = useContext(userContext).current_user
-    // fetch products
     useEffect(() => {
         try {
 
-            //  request to productsApi
             async function getProducts() {
                 try {
                     const response = await fetchProducts()
@@ -92,7 +87,6 @@ export default function Products() {
             getProducts()
             getItemsFromWishlist()
         } catch (e) {
-            // console.log(e)
             console.log('API not working')
         }
         return () => {

@@ -1,6 +1,5 @@
 
 
-//  * I'll need this for products:/id, carts and so on
 
 import React, {useContext}  from 'react'
 import { Route, Redirect } from 'react-router-dom'

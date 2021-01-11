@@ -38,10 +38,7 @@ export default function Cart() {
 
     }
 
-
-
     async function Purchase() {
-        //  * Flash stuff
         try {
             await ServerApi.order({_token, username})
 

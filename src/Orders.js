@@ -50,7 +50,6 @@ export default function Orders() {
         }
         fetchOrders()
         return () => {
-            // clean up
         }
 
     }, [])

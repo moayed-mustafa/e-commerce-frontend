@@ -18,11 +18,9 @@ export default function Login() {
 
 
     const errors = {}
-        // username validation
         if (values.username=== "") {
             errors.username = "Required!"
         }
-        // password validation
         if (!values.password) {
             errors.password ="Required!"
         }

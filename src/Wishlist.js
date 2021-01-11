@@ -12,7 +12,7 @@ export default function Wishlist() {
     const wishlist = useSelector(st => st.wishlist)
     const dispatch = useDispatch()
     const { _token, username } = useContext(userContext).current_user
-    const [flash, setFlash] = useState({
+    const [flashMessage, setFlashMessage] = useState({
         condition: false,
         message: "",
         backgroundColor: ""
@@ -31,20 +31,17 @@ export default function Wishlist() {
                     type:"ADD_TO_CART",
                     product
                 })
-                //  make a flash message
-                setFlash({
+                setFlashMessage({
                     condition: true,
                     message: "Item added to cart",
                     backgroundColor: "#FFB500"
                 })
-                // remove the flash
                 setTimeout(() => {
-                    setFlash({
+                    setFlashMessage({
                         condition: false,
                         message: "",
                         backgroundColor: ""
                     })
-                    //  remove from wishlist
                     dispatch({
                         type:"REMOVE_FORM_WISHLIST",
                         product
@@ -57,15 +54,13 @@ export default function Wishlist() {
                     type:"REMOVE_FORM_WISHLIST",
                     product
                 })
-                //  make a flash message
-                setFlash({
+                setFlashMessage({
                     condition: true,
                     message: "Item rmoved from wishlist",
                     backgroundColor: "#F93800"
                 })
-                // remove the flash
                 setTimeout(() => {
-                    setFlash({
+                    setFlashMessage({
                         condition: false,
                         message: "",
                         backgroundColor: ""
@@ -79,7 +74,7 @@ export default function Wishlist() {
     }
 
 
-    return (wishlist.length === 0 && flash.condition === false?
+    return (wishlist.length === 0 && flashMessage.condition === false?
         <h3 className="empty-cart"> Make a wish</h3> :
             <div className='cart-div' key={uuid()}>
             <ul className='cart-ul' key={uuid()}>
@@ -112,8 +107,8 @@ export default function Wishlist() {
                 }
             </ul>
                 <div>
-                    {flash.condition && <Alert style={{ backgroundColor: flash.backgroundColor }}
-                        className="alert">{flash.message}
+                    {flashMessage.condition && <Alert style={{ backgroundColor: flashMessage.backgroundColor }}
+                        className="alert">{flashMessage.message}
                     </Alert>}
                 </div >
 

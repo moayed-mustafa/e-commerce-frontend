@@ -20,13 +20,11 @@ export default function UpdateUser() {
 
     const validate = values => {
         const errors = {}
-        // username validation
         if (values.username.length > 18) {
             errors.username = 'Must be 18 characters or less';
           }else if (values.username.length < 4) {
             errors.username = 'Must be 4 characters or more';
         }
-        // password validation
         if (!values.password) {
             errors.password = "Required!"
 
@@ -34,7 +32,6 @@ export default function UpdateUser() {
             errors.password ='Must be 6 charachters or more'
         }
 
-        // firstname validation
         if (values.first_name) {
             if ( values.first_name.length > 12) {
                 errors.first_name = 'Must be 12 characters or less';
@@ -43,7 +40,6 @@ export default function UpdateUser() {
             }
 
         }
-        // lastname validation
         if (values.last_name) {
             if (values.last_name.length > 12) {
                errors.last_name = 'Must be 12 characters or less';
@@ -53,7 +49,6 @@ export default function UpdateUser() {
 
         }
 
-        // email validation
         if (values.email) {
             if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
                errors.email = 'Invalid email address';

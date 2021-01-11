@@ -8,8 +8,6 @@ import { v4 as uuid } from 'uuid';
 
 
 export default function Category() {
-    // const { category } = useParams()
-    //  will use the pathname and slice it up because the easier way of using useParams is not working
     const { pathname } = useLocation()
     const [fakeLoad, setFakeLoad] = useState(false)
     const ref = useRef(fakeLoad)
@@ -26,10 +24,6 @@ export default function Category() {
         };
 
     })
-
-
-
-
 
     let param = pathname.slice(pathname.lastIndexOf('/') + 1, pathname.length)
 

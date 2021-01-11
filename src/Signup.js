@@ -17,7 +17,6 @@ export default function Signup() {
 
     const validate = values => {
         const errors = {}
-        // username validation
         if (values.username=== "") {
             errors.username = "Required!"
         }else if (values.username.length > 18) {
@@ -25,18 +24,12 @@ export default function Signup() {
           }else if (values.username.length < 4) {
             errors.username = 'Must be 4 characters or more';
         }
-        // password validation
         if (!values.password) {
             errors.password ="Required!"
         } else if (values.password.length <6) {
             errors.password ='Must be 6 charachters or more'
         }
-        //  * figure this one out later
-        // else if (!/[A-Z]$/i.test(values.password)) {
-        //     errors.password ='Must have at least one Capital letter'
-        // }
 
-        // firstname validation
         if (values.first_name=== "") {
             errors.first_name = "Required!"
         }else if (values.first_name.length > 12) {
@@ -44,7 +37,6 @@ export default function Signup() {
           }else if (values.first_name.length < 2) {
             errors.first_name = 'Must be 2 characters or more';
         }
-        // lastname validation
         if (values.last_name=== "") {
             errors.last_name = "Required!"
         }else if (values.last_name.length > 12) {
@@ -53,13 +45,11 @@ export default function Signup() {
             errors.last_name = 'Must be 2 characters or more';
         }
 
-        // email validation
         if (!values.email) {
             errors.email = 'Required';
           } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
             errors.email = 'Invalid email address';
           }
-        // address validation
         if (!values.address) {
             errors.address = 'Required';
           }
@@ -78,13 +68,10 @@ export default function Signup() {
         },
         validate,
         onSubmit: async(values) => {
-            //  here is where my api connection to  the signup route will happen
-            // * find a way to error handle the signup
             try {
                 let user = await Auth.signup(values)
                 console.log(user)
                 set_current_user(user)
-
                 history.push('/')
 
             } catch (e) {
